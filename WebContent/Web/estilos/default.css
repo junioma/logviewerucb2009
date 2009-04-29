@@ -1,0 +1,27 @@
+/* Campos */
+.Disabled {
+    background-color: #EBEBE4;
+    border: 1px solid #7F9DB9;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-size: 10pt;
+    color: #999999;
+    height: 22px;
+    padding-top: 2px;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+/* Paineis */
+.PanelBox {
+    background-color: #F7F7E7;
+    border-left: 1px solid #D2D8B0;
+    border-right: 1px solid #D2D8B0;
+    border-top: 1px solid #D2D8B0;
+    border-bottom: 1px solid #D2D8B0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 9px;
+}
+/* Outros */
+.Transparent {
+    background-color: transparent;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration//EN"
+"http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+<tiles-definitions>
+	<!-- Layout Base -->
+	<definition name="baseLayout" path="/Web/jsf/templates/Layout.jsp">
+		<put name="windowTitle" value="LogView" />
+		<put name="title" />
+		<put name="header" value="/Web/jsf/templates/Header.jsp" />
+		<put name="menu" value="/Web/jsf/templates/Menu.jsp" />
+		<put name="messages" value="/Web/jsf/templates/Messages.jsp" />
+		<put name="body" />
+		<put name="footer" value="/Web/jsf/templates/Footer.jsp" />
+
+		<!-- Arquivos de Javascript -->
+		<putList name="scripts">
+			<add value="/Web/scripts/default.js" />
+			<add value="/Web/scripts/mascara.js" />
+		</putList>
+
+		<!-- Arquivos de Stylesheet -->
+		<putList name="styles">
+			<add value="/Web/estilos/default.css" />
+		</putList>
+	</definition>
+	<definition name="/Web/home.tiles" extends="baseLayout">
+		<put name="title" value="Home" />
+		<put name="body" value="/Web/home.jsp" />
+	</definition>
+
+</tiles-definitions>

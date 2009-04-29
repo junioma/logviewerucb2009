@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<adf-faces-config xmlns="http://xmlns.oracle.com/adf/view/faces/config">
+  <skin-family>oracle</skin-family>
+  
+  <client-validation-disabled>false</client-validation-disabled>
+  
+  <time-zone>America/Sao_Paulo</time-zone>
+</adf-faces-config>
