@@ -196,7 +196,7 @@ public class Parse {
 	
 	public Date doParseData(StringBuilder eventoString) 
 	{
-		//TODO
+		//TODO Concertar parse de data
 		Date dataTemp = new Date(); 
 		String tempString = findData(eventoString);
 		dataTemp.setYear(Integer.parseInt(tempString.substring(0,4)));

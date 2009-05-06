@@ -1,6 +1,10 @@
 package holders;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import util.Constantes;
 
 public class FiltroPesquisa {
 	public Integer[] niveis;
@@ -96,6 +100,40 @@ public class FiltroPesquisa {
 		this.caseArquivo = caseArquivo;
 	}
 	
+	public boolean isFiltroNivelError(){
+		return verificarExisteNivel(Constantes.NIVEL_ERROR);
+	}
+	
+	public boolean isFiltroNivelWarning(){
+		return verificarExisteNivel(Constantes.NIVEL_WARNING);
+	}
+	public boolean isFiltroNivelFine(){
+		return verificarExisteNivel(Constantes.NIVEL_FINE);
+	}
+	public boolean isFiltroNivelInfo(){
+		return verificarExisteNivel(Constantes.NIVEL_INFO);
+	}
+	public boolean isFiltroNivelDebug(){
+		return verificarExisteNivel(Constantes.NIVEL_DEBUG);
+	}
+	
+	/**
+	 * @param i
+	 * @return
+	 */
+	private boolean verificarExisteNivel(Integer i) {
+		if(getNiveis() == null)
+			return false;
+		List<Integer> listaNiveis = new ArrayList<Integer>();
+		for(Integer nivel : getNiveis()){
+			listaNiveis.add(nivel);
+		}
+		return listaNiveis.contains(i);
+	}
+	
+	/**
+	 * 
+	 */
 	public boolean atendeFiltroPesquisa(Evento evento){
 		boolean adicionar = true;
 		if(adicionar){

@@ -3,7 +3,7 @@ package holders;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.springframework.transaction.annotation.Transactional;
+import util.Constantes;
 
 public class Evento {
 	private Long id;
@@ -77,22 +77,35 @@ public class Evento {
 	}
 	
 	public boolean isNivelDebug(){
-		return (getNivel() == 1);
+		return (getNivel() == Constantes.NIVEL_DEBUG.intValue());
 	}
 	public boolean isNivelInfo(){
-		return (getNivel() == 2);		
+		return (getNivel() == Constantes.NIVEL_INFO.intValue());		
 	}
 	public boolean isNivelFine(){
-		return (getNivel() == 3);
+		return (getNivel() == Constantes.NIVEL_FINE.intValue());
 	}
 	public boolean isNivelWarning(){
-		return (getNivel() == 4);		
+		return (getNivel() == Constantes.NIVEL_WARNING.intValue());		
 	}
 	public boolean isNivelError(){
-		return (getNivel() == 5);		
+		return (getNivel() == Constantes.NIVEL_ERROR.intValue());		
 	}
 	
-	@Transactional
+	public String getDescricaoNivel(){
+		if(isNivelDebug())
+			return "Debug";
+		if(isNivelInfo())
+			return "Info";
+		if(isNivelFine())
+			return "Fine";
+		if(isNivelWarning())
+			return "Warning";
+		if(isNivelError())
+			return "Error";
+		return "";	
+	}
+	
 	public String getData(){
 		Date dataHora = getDataHora();		
 		if(dataHora == null)
@@ -100,11 +113,30 @@ public class Evento {
 		return new SimpleDateFormat("dd/MM/yyyy").format(dataHora);
 	}
 	
-	@Transactional
 	public String getHora(){
 		Date dataHora = getDataHora();
 		if(dataHora == null)
 			return "";
 		return new SimpleDateFormat("HH:mm:ss").format(dataHora);
+	}
+	
+	public String getImagemNivel(){
+		if(isNivelDebug()){
+			return Constantes.IMAGEM_DEBUG;
+		}
+		if(isNivelError()){
+			return Constantes.IMAGEM_ERROR;
+		}
+		if(isNivelInfo()){
+			return Constantes.IMAGEM_INFO;
+		}
+		if(isNivelFine()){
+			return Constantes.IMAGEM_FINE;
+		}
+		if(isNivelWarning()){
+			return Constantes.IMAGEM_WARNING;
+		}
+
+		return "";
 	}
 }
