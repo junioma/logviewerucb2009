@@ -9,5 +9,29 @@
 		<managed-bean-class>home.Home</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>
+		relatorioGrafico</managed-bean-name>
+		<managed-bean-class>
+		relatorio.RelatorioGrafico</managed-bean-class>
+		<managed-bean-scope>
+		request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>
+		relatorioPDF</managed-bean-name>
+		<managed-bean-class>
+		relatorio.RelatorioPDF</managed-bean-class>
+		<managed-bean-scope>
+		request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>
+		logview</managed-bean-name>
+		<managed-bean-class>
+		util.LogView</managed-bean-class>
+		<managed-bean-scope>
+		request</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>

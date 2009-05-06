@@ -3,13 +3,12 @@ package home;
 import holders.Evento;
 import holders.FiltroPesquisa;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
-import util.ControlFilter;
-import filtros.LogView;
+import util.LogView;
+import util.Teste;
 
 @SuppressWarnings("unchecked")
 public class Home extends LogView{
@@ -20,8 +19,8 @@ public class Home extends LogView{
 		
 	}
 	
-	public void actionFiltrar(ActionEvent evento) throws IOException{
-		setListaEventos(ControlFilter.gerarListaEventosFiltrados(getFiltro()));
+	public void actionFiltrar(ActionEvent evento){
+		setListaEventos(Teste.gerarListaEventosFiltrados(getFiltro()));
 	}
 	
 	
@@ -32,22 +31,22 @@ public class Home extends LogView{
 	}
 
 	public List<Evento> getListaEventos() {
-		listaEventos = (List<Evento>) getFromSession("listaEvento");
+		listaEventos = getEventos();
 		return listaEventos;
 	}
 
 	public void setListaEventos(List<Evento> listaEventos) {
-		storeOnSession("listaEvento", listaEventos);
+		setEventos(listaEventos);
 		this.listaEventos = listaEventos;
 	}
 
 	public FiltroPesquisa getFiltro() {
-		if(filtro == null)
-			filtro = new FiltroPesquisa();
+		filtro=super.getFiltroPesquisa();
 		return filtro;
 	}
 
 	public void setFiltro(FiltroPesquisa filtro) {
+		setFiltro(filtro);
 		this.filtro = filtro;
 	}
 
