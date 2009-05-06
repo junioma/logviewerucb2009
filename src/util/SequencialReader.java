@@ -24,10 +24,10 @@ import java.util.List;
 class SequencialReader {
 
 	/**
-	 * This method read all files received by first paramter and write all lines from these files into the second paramter without critera.
+	 * This method read all files received by first parameter and write all lines from these files into the second parameter without criteria.
 	 *
-	 * @param  arrayListDoDiretorio	This paramter must have a list of all files that will be read.
-	 * @param  arrayListDeEventos	This paramter will receive all lines reads from files.
+	 * @param  arrayListDoDiretorio	This parameter must have a list of all files that will be read.
+	 * @param  arrayListDeEventos	This parameter will receive all lines reads from files.
 	 * @return void
 	 */
 
@@ -57,11 +57,11 @@ class SequencialReader {
 	}
 	
 	/**
-	 *This method read all files received by first paramter and write all lines from these files into the second 
-	 *paramter using the validation os the parse object that was received in the third paramter .
+	 *This method read all files received by first parameter and write all lines from these files into the second 
+	 *parameter using the validation the parse object that was received in the third parameter .
 	 *
-	 * @param  arrayListDoDiretorio	This paramter must have a list of all files that will be read.
-	 * @param  arrayListDeEventos	This paramter will receive all lines reads from files.
+	 * @param  arrayListDoDiretorio	This parameter must have a list of all files that will be read.
+	 * @param  arrayListDeEventos	This parameter will receive all lines reads from files.
 	 * @return void
 	 */
 
