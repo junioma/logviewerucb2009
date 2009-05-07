@@ -1,3 +1,3 @@
 <%
-	response.sendRedirect(request.getContextPath()+"/Web/home.faces");
+	response.sendRedirect(request.getContextPath()+"/Web/jsf/home/Home.faces");
 %>
