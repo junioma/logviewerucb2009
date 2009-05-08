@@ -68,10 +68,10 @@ class SequencialReader {
 	public static void readEventsCheckingByFilter(ArrayList<File> arrayListDoDiretorio,List<Evento> arrayListDeEventos,Parse parse,FiltroPesquisa filtro, int begin,int end) throws IOException{
 		String eventoStringTemp="";
 		//TODO
-		for(int counter =0,counterOfEvents=1 ; counter <arrayListDoDiretorio.size()&&counterOfEvents<end;counter++ ){
+		for(int counter =0,counterOfEvents=1 ; counter <arrayListDoDiretorio.size()&&counterOfEvents<=end;counter++ ){
 			FileReader arquivo = new FileReader(arrayListDoDiretorio.get(counter));
 			BufferedReader buffer = new BufferedReader(arquivo);
-			while((eventoStringTemp=buffer.readLine())!=null && counterOfEvents<end)
+			while((eventoStringTemp=buffer.readLine())!=null && counterOfEvents<=end)
 			{
 				//TODO
 				if(parse.validate(eventoStringTemp))
