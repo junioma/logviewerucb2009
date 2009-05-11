@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import entity.Configuration;
+
 /**Class to represent a list of files inside a directory.
 
  * @author Bruno / Junio / Matheus
@@ -75,17 +77,28 @@ class Directory {
 	 */
 	private void recursiveDirectoryWalker(File directoryToWalk,ArrayList<File> arrayListOfFiles)
 	{
+		Configuration configuracao = Configuration.getInstance();
 		File todosArquivosDoDiretorio[] = directoryToWalk.listFiles();
 		for (int counter = 0; counter < todosArquivosDoDiretorio.length; counter++) {
             File f = todosArquivosDoDiretorio[counter];
             if (f.isDirectory()) {
             	recursiveDirectoryWalker(todosArquivosDoDiretorio[counter], arrayListOfFiles);
-            } else if (f.getName().endsWith(".txt")) {
-            	arrayListOfFiles.add(todosArquivosDoDiretorio[counter]);
-            }
-            else //must be treated
+            } 
+            else
             {
-            	arrayListOfFiles.add(todosArquivosDoDiretorio[counter]);
+            	//TODO testar melhor extenção do arquivo
+            	//verifica extenção do arquivo
+            	int point = f.getName().lastIndexOf(".");
+            	if(point>0&&point!=(f.getName().length()-1))
+            	{
+            		if(configuracao.getFileExtension().contains(f.getName().substring(point+1, f.getName().length())))
+            			arrayListOfFiles.add(todosArquivosDoDiretorio[counter]);
+            	}
+            	else //must be treated
+            	{
+            		if(configuracao.getFileExtension().contains(""))
+            			arrayListOfFiles.add(todosArquivosDoDiretorio[counter]);
+            	}
             }
         }
 	}
