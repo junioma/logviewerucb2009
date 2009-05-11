@@ -3,8 +3,12 @@
  */
 package entity;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 
 /**This Class hold the basic configuration of the application.
@@ -68,6 +72,27 @@ public class Configuration {
 			uniqueInstance = new Configuration();
 		}
 		return uniqueInstance;
+	}
+	// TODO Rever a leitura de ,properties
+	public String getlog4JPatternLayout() {
+	    InputStream is;   
+	    String result="";
+	    Properties properties = new Properties();   
+	       
+	    try {      
+	        is = Thread.currentThread().getContextClassLoader().getResourceAsStream("/log4j.properties");
+	        //TODO Deve usar o caminho passado pela interface grafica
+	        //is = Thread.currentThread().getContextClassLoader().getResourceAsStream(log4JPatternLayoutPath);
+	        properties.load(is); 
+	        result = properties.getProperty("log4j.appender.stdout.layout.ConversionPattern");
+	           
+	    } catch (FileNotFoundException ex) {   
+	        ex.printStackTrace();   
+	    } catch (IOException ex) {   
+	        ex.printStackTrace();   
+	    }   
+	       
+	    return result; 
 	}
 	
 }

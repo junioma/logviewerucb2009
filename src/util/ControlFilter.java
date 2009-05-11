@@ -20,14 +20,17 @@ public class ControlFilter {
 		
 		Configuration configuracao = Configuration.getInstance();
 		configuracao.setLogsPath("C:/Lucene/JavaDotNet/data");
-		//configuracao.addFileExtension("txt");
+		configuracao.addFileExtension("txt");
+		//TODO os caminhos da configuração devem vir da interface grafica
+		//configuracao.setLog4JPatternLayoutPath(log4JPatternLayoutPath)
 		//configuracao.addFileExtension("log");
 		//configuracao.addFileExtension("l4j");
 		configuracao.addFileExtension(new String(""));
 		/*--------------------------------------------------------------------------------------*/
 		Directory diretorio = new Directory(configuracao.getLogsPath());//Directory used by data 
 		diretorio.loadDataFromDirectory();//Read the data from directory, only the files descriptors
-        Parse parse = new Parse();
+        Parse parse = new Parse(configuracao.getlog4JPatternLayout()); //Pega as mascaras do log4j
+        System.out.println("google:Mascara do log4j:"+parse.getFullParse());
 		parse.addOrderOfParse(Evento.EVENTO.DATAHORA);
         parse.addOrderOfParse(Evento.EVENTO.ID);
         parse.addOrderOfParse(Evento.EVENTO.NIVEL);
