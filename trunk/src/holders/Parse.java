@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**Class to represent a list of files inside a directory.
+/**Class to represent a the format of parse from log4j PatternLayout .
 
  * @author Bruno / Junio / Matheus
 
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class Parse {
 
-	//This attribute is temporary
+	//Those attributes are temporary
 	@Deprecated
 	private String filter;
 	@Deprecated
@@ -41,7 +41,6 @@ public class Parse {
 	public Parse()
 	{
 	}
-	@Deprecated
 	public Parse(String fullParse)
 	{
 		if(fullParse != null)
