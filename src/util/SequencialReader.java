@@ -43,7 +43,7 @@ class SequencialReader {
 			BufferedReader buffer = new BufferedReader(arquivo);
 			while(((eventoTemp=buffer.readLine())!=null)&&counterOfEvents<end)
 			{
-                if(parse.validate(eventoTemp))
+                if(parse.validateEvent(eventoTemp))
                 {
                 	counterOfEvents++;
                 	if(counterOfEvents>=begin)
@@ -74,7 +74,7 @@ class SequencialReader {
 			while((eventoStringTemp=buffer.readLine())!=null && counterOfEvents<=end)
 			{
 				//TODO
-				if(parse.validate(eventoStringTemp))
+				if(parse.validateEvent(eventoStringTemp))
                 {
                 	counterOfEvents++;
                 	Evento tempEvent = CastEvento.oneFromString(eventoStringTemp,parse);
@@ -103,7 +103,7 @@ class SequencialReader {
 			BufferedReader buffer = new BufferedReader(arquivo);
 			while((eventoStringTemp=buffer.readLine())!=null)
 			{
-				if(parse.validate(eventoStringTemp))
+				if(parse.validateEvent(eventoStringTemp))
                 {
                 	Evento tempEvent = CastEvento.oneFromString(eventoStringTemp,parse);
                 	if(tempEvent!=null)
@@ -129,7 +129,7 @@ class SequencialReader {
 			BufferedReader buffer = new BufferedReader(arquivo);
 			while((eventoTemp=buffer.readLine())!=null)
 			{
-				if(parse.validate(eventoTemp))
+				if(parse.validateEvent(eventoTemp))
 				{
 					counterOfEvents++;
 				}

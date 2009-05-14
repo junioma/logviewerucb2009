@@ -14,19 +14,35 @@ public class Evento {
 	private String thread;
 	private String logger;
 	private int nivel;
+	private String localizacaoChamador;
+	private int linhaEvento;
+	private String metodoChamador;
+	
 	
 	public enum EVENTO
 	{
-		ID,
-		DATAHORA,
-		CLASSE,
-		MENSAGEM,
-		ARQUIVO,
-		THREAD,
-		LOGGER,
-		NIVEL
+		ID(""),
+		DATAHORA("%d"),
+		CLASSE("%C"),
+		MENSAGEM("%m"),
+		ARQUIVO("%F"),
+		THREAD("%t"),
+		LOGGER(""),
+		NIVEL("%p"),
+		LOCALIZACAOCHAMADOR("%l"),
+		LINHAEVENTO("%L"),
+		METODOCHAMADOR("%M");
+		private String mascara;
+		private EVENTO(String mascara)
+		{
+			this.mascara = mascara;
+		}
+		public String getMascara()
+		{
+			return this.mascara;
+		}
+		
 	}
-	
 	public Long getId() {
 		return id;
 	}
@@ -138,5 +154,23 @@ public class Evento {
 		}
 
 		return "";
+	}
+	public String getLocalizacaoChamador() {
+		return localizacaoChamador;
+	}
+	public void setLocalizacaoChamador(String localizacaoChamador) {
+		this.localizacaoChamador = localizacaoChamador;
+	}
+	public int getLinhaEvento() {
+		return linhaEvento;
+	}
+	public void setLinhaEvento(int linhaEvento) {
+		this.linhaEvento = linhaEvento;
+	}
+	public String getMetodoChamador() {
+		return metodoChamador;
+	}
+	public void setMetodoChamador(String metodoChamador) {
+		this.metodoChamador = metodoChamador;
 	}
 }

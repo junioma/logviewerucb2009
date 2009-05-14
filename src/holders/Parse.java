@@ -19,8 +19,8 @@ public class Parse {
 	//Those attributes are temporary
 	@Deprecated
 	private String filter;
-	@Deprecated
-    private String fullParse;
+
+    private String fullParseConversionString;
 	@Deprecated
 	private String idParse;
 	@Deprecated
@@ -41,24 +41,24 @@ public class Parse {
 	public Parse()
 	{
 	}
-	public Parse(String fullParse)
+	public Parse(String fullParseConversionString)
 	{
-		if(fullParse != null)
+		if(fullParseConversionString != null)
 		{
-			this.fullParse = fullParse;
+			this.fullParseConversionString = fullParseConversionString;
 		}
 		else
 		{
-			this.fullParse="";
+			this.fullParseConversionString="";
 		}
 	}
 
-    public String getFullParse() {
-        return fullParse;
+    public String getFullParseConversionString() {
+        return fullParseConversionString;
     }
 
-    public void setFullParse(String fullParse) {
-        this.fullParse = fullParse;
+    public void setFullParseConversionString(String fullParseConversionString) {
+        this.fullParseConversionString = fullParseConversionString;
     }
 
 
@@ -148,7 +148,7 @@ public class Parse {
 	 * @return Boolean	Return if is a valid value	
 	 */
 	
-	public Boolean validate(String event)
+	public Boolean validateEvent(String event)
 	{
 		//return event.matches(fullParse);
 		boolean open = false;
@@ -341,5 +341,7 @@ public class Parse {
 		//System.out.println(stringToSearch);
 		return retorno;
 	}
+	
+
 
 }

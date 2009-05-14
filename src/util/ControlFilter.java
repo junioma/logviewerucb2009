@@ -16,13 +16,12 @@ public class ControlFilter {
 	public static final List<Evento> gerarListaEventos(FiltroPesquisa filtro) throws IOException{
 		List<Evento> listEventos = new ArrayList<Evento>();
 		/*Deve ser configurada previamente com dados da interface web---------------------------*/
-		//TODO Colocar a configuração da Configuration em seu devido lugar
-		
+		//TODO Colocar a configuração da Configuration em seu devido lugar na interface do usuário
 		Configuration configuracao = Configuration.getInstance();
 		configuracao.setLogsPath("C:/Lucene/JavaDotNet/data");
 		configuracao.addFileExtension("txt");
 		//TODO os caminhos da configuração devem vir da interface grafica
-		//configuracao.setLog4JPatternLayoutPath(log4JPatternLayoutPath)
+		configuracao.setLog4JPatternLayoutPath("/log4j.properties");
 		//configuracao.addFileExtension("log");
 		//configuracao.addFileExtension("l4j");
 		configuracao.addFileExtension(new String(""));
@@ -30,13 +29,13 @@ public class ControlFilter {
 		Directory diretorio = new Directory(configuracao.getLogsPath());//Directory used by data 
 		diretorio.loadDataFromDirectory();//Read the data from directory, only the files descriptors
         Parse parse = new Parse(configuracao.getlog4JPatternLayout()); //Pega as mascaras do log4j
-        System.out.println("google:Mascara do log4j:"+parse.getFullParse());
+        System.out.println("google:Mascara do log4j:"+parse.getFullParseConversionString());
 		parse.addOrderOfParse(Evento.EVENTO.DATAHORA);
         parse.addOrderOfParse(Evento.EVENTO.ID);
         parse.addOrderOfParse(Evento.EVENTO.NIVEL);
         parse.addOrderOfParse(Evento.EVENTO.CLASSE);
         parse.addOrderOfParse(Evento.EVENTO.MENSAGEM); 
-        System.out.println("google:Quantidade total de regitros:"+SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse,filtro));
+        System.out.println(Evento.EVENTO.DATAHORA.ordinal()+" "+Evento.EVENTO.DATAHORA.name()+" "+Evento.EVENTO.DATAHORA.getMascara()+" google:Quantidade total de regitros:"+SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse,filtro));
         //SequencialReader.readEventsAll(diretorio.getDirectoryFiles(), arrayListDeEventos,parse,500,600);
 		//SequencialReader.readEventsCheckingByFilter(diretorio.getDirectoryFiles(), arrayListDeEventos, parse, filtro, 2, 5);
         SequencialReader.readEventsCheckingByFilter(diretorio.getDirectoryFiles(), listEventos, parse, filtro, 1, SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse,filtro));

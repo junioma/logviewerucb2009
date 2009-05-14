@@ -80,7 +80,7 @@ public class Configuration {
 	    Properties properties = new Properties();   
 	       
 	    try {      
-	        is = Thread.currentThread().getContextClassLoader().getResourceAsStream("/log4j.properties");
+	        is = Thread.currentThread().getContextClassLoader().getResourceAsStream(getLog4JPatternLayoutPath());
 	        //TODO Deve usar o caminho passado pela interface grafica
 	        //is = Thread.currentThread().getContextClassLoader().getResourceAsStream(log4JPatternLayoutPath);
 	        properties.load(is); 
