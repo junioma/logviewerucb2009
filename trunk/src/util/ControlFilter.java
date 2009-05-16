@@ -18,7 +18,7 @@ public class ControlFilter {
 		/*Deve ser configurada previamente com dados da interface web---------------------------*/
 		//TODO Colocar a configuração da Configuration em seu devido lugar na interface do usuário
 		Configuration configuracao = Configuration.getInstance();
-		configuracao.setLogsPath("C:/Lucene/JavaDotNet/data");
+		configuracao.setLogsPath("/exemplo/");
 		configuracao.addFileExtension("txt");
 		//TODO os caminhos da configuração devem vir da interface grafica
 		configuracao.setLog4JPatternLayoutPath("/log4j.properties");
