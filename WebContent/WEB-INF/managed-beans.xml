@@ -3,26 +3,11 @@
   "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
   "http://java.sun.com/dtd/web-facesconfig_1_0.dtd" >
 <faces-config xmlns="http://java.sun.com/JSF/Configuration">
-
-	<managed-bean>
-		<managed-bean-name>home</managed-bean-name>
-		<managed-bean-class>home.Home</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-
-<managed-bean>
-		<managed-bean-name>
-		relatorioGrafico</managed-bean-name>
-		<managed-bean-class>
-		relatorio.RelatorioGrafico</managed-bean-class>
-		<managed-bean-scope>
-		request</managed-bean-scope>
-	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>
-		relatorioPDF</managed-bean-name>
+		home</managed-bean-name>
 		<managed-bean-class>
-		relatorio.RelatorioPDF</managed-bean-class>
+		logview.java.view.home.Home</managed-bean-class>
 		<managed-bean-scope>
 		request</managed-bean-scope>
 	</managed-bean>
@@ -30,7 +15,23 @@
 		<managed-bean-name>
 		logview</managed-bean-name>
 		<managed-bean-class>
-		util.LogView</managed-bean-class>
+		logview.java.view.LogView</managed-bean-class>
+		<managed-bean-scope>
+		request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>
+		relatorioGrafico</managed-bean-name>
+		<managed-bean-class>
+		logview.java.view.relatorio.RelatorioGrafico</managed-bean-class>
+		<managed-bean-scope>
+		request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>
+		relatorioPDF</managed-bean-name>
+		<managed-bean-class>
+		logview.java.view.relatorio.RelatorioPDF</managed-bean-class>
 		<managed-bean-scope>
 		request</managed-bean-scope>
 	</managed-bean>
