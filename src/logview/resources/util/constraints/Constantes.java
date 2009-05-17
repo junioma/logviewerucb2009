@@ -1,4 +1,4 @@
-package logview.resources.util;
+package logview.resources.util.constraints;
 
 /**
  * @author matheus

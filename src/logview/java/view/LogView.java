@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import logview.java.view.holders.Evento;
 import logview.java.view.holders.FiltroPesquisa;
-import logview.resources.util.Constantes;
+import logview.resources.util.constraints.Constantes;
 
 @SuppressWarnings({"unchecked","deprecation"})
 public class LogView {

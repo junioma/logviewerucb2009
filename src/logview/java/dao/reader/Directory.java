@@ -1,9 +1,10 @@
-package logview.resources.util;
+package logview.java.dao.reader;
 
-import logview.java.entity.Configuration;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import logview.java.entity.Configuration;
 
 /**Class to represent a list of files inside a directory.
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
  */
 
-class Directory {
+public class Directory {
 	String 		directoryPath;
 	File 		directory;
 	ArrayList<File>	directoryFiles;
@@ -27,7 +28,7 @@ class Directory {
 	 *
 	 * @param  directoryPath	A valid path where all files will be read.
 	 */
-	Directory(String directoryPath)
+	public Directory(String directoryPath)
 	{
 		if(directoryPath!=null)
 		{

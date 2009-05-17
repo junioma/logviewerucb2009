@@ -3,7 +3,7 @@ package logview.java.view.holders;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import logview.resources.util.Constantes;
+import logview.resources.util.constraints.Constantes;
 
 public class Evento {
 	private Long id;

@@ -1,9 +1,10 @@
-package logview.java.view.holders;
-
+package logview.java.dao.reader;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import logview.java.view.holders.Evento;
 
 /**Class to represent a the format of parse from log4j PatternLayout .
 

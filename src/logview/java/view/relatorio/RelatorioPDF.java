@@ -20,8 +20,6 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 
-import org.apache.log4j.Logger;
-
 public class RelatorioPDF extends LogView{
 
 	public String visualizarPDF(){

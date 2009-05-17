@@ -1,4 +1,4 @@
-package logview.resources.util;
+package logview.java.dao.reader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,7 +9,6 @@ import java.util.List;
 
 import logview.java.view.holders.Evento;
 import logview.java.view.holders.FiltroPesquisa;
-import logview.java.view.holders.Parse;
 
 
 /**Class to do all the sequencial read work without use index.
@@ -22,7 +21,7 @@ import logview.java.view.holders.Parse;
 
  */
 
-class SequencialReader {
+public class SequencialReader {
 
 	/**
 	 * This method read all files received by first parameter and write all lines from these files into the second parameter without criteria.
@@ -94,7 +93,7 @@ class SequencialReader {
 
 	}
 	
-	static int countEventsByParse(ArrayList<File> arrayListDoDiretorio,Parse parse,FiltroPesquisa filtro) throws IOException 
+	public static int countEventsByParse(ArrayList<File> arrayListDoDiretorio,Parse parse,FiltroPesquisa filtro) throws IOException 
 	{
 		String eventoStringTemp="";
 		int counterOfSearchEvents = 0;
