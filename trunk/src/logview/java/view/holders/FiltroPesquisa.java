@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import logview.resources.util.Constantes;
+import logview.resources.util.constraints.Constantes;
 
 public class FiltroPesquisa {
 	public Integer[] niveis;

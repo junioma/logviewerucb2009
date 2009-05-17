@@ -1,11 +1,10 @@
-package logview.resources.util;
+package logview.java.dao.reader;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import logview.java.view.holders.Evento;
-import logview.java.view.holders.Parse;
 
 public class CastEvento {
 	private CastEvento(){}

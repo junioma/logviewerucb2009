@@ -1,15 +1,15 @@
-package logview.resources.util;
-
+package logview.java.dao.control;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import logview.java.dao.reader.Directory;
+import logview.java.dao.reader.Parse;
+import logview.java.dao.reader.SequencialReader;
 import logview.java.entity.Configuration;
-import logview.java.view.LogView;
 import logview.java.view.holders.Evento;
 import logview.java.view.holders.FiltroPesquisa;
-import logview.java.view.holders.Parse;
 
 public class ControlFilter {
 	

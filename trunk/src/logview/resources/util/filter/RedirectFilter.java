@@ -1,6 +1,4 @@
-package logview.java.service.filtros;
-
-
+package logview.resources.util.filter;
 
 import java.io.IOException;
 
