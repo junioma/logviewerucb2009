@@ -1,7 +1,4 @@
-package util;
-import holders.Evento;
-import holders.FiltroPesquisa;
-import holders.Parse;
+package logview.resources.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,6 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import logview.java.view.holders.Evento;
+import logview.java.view.holders.FiltroPesquisa;
+import logview.java.view.holders.Parse;
 
 
 /**Class to do all the sequencial read work without use index.

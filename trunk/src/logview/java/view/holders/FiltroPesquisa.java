@@ -1,10 +1,10 @@
-package holders;
+package logview.java.view.holders;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import util.Constantes;
+import logview.resources.util.Constantes;
 
 public class FiltroPesquisa {
 	public Integer[] niveis;

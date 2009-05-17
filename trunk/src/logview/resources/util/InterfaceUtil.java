@@ -1,4 +1,4 @@
-package util;
+package logview.resources.util;
 
 public class InterfaceUtil {
 	

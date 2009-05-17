@@ -1,11 +1,11 @@
-package util;
-
-import holders.Evento;
-import holders.Parse;
+package logview.resources.util;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import logview.java.view.holders.Evento;
+import logview.java.view.holders.Parse;
 
 public class CastEvento {
 	private CastEvento(){}

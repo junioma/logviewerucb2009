@@ -1,4 +1,4 @@
-package holders;
+package logview.java.view.holders;
 
 
 import java.util.ArrayList;

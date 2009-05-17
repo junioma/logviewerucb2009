@@ -1,7 +1,7 @@
 /**
  * 
  */
-package util.chart;
+package logview.resources.util.chart;
 
 
 /**

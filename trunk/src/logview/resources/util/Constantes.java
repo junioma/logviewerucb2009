@@ -1,7 +1,4 @@
-/**
- * 
- */
-package util;
+package logview.resources.util;
 
 /**
  * @author matheus

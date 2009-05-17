@@ -1,15 +1,15 @@
-package util;
+package logview.resources.util;
 
-
-import holders.Evento;
-import holders.FiltroPesquisa;
-import holders.Parse;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.Configuration;
+import logview.java.entity.Configuration;
+import logview.java.view.LogView;
+import logview.java.view.holders.Evento;
+import logview.java.view.holders.FiltroPesquisa;
+import logview.java.view.holders.Parse;
 
 public class ControlFilter {
 	
@@ -18,7 +18,7 @@ public class ControlFilter {
 		/*Deve ser configurada previamente com dados da interface web---------------------------*/
 		//TODO Colocar a configuração da Configuration em seu devido lugar na interface do usuário
 		Configuration configuracao = Configuration.getInstance();
-		configuracao.setLogsPath("/exemplo/");
+		configuracao.setLogsPath("D:/desenvolvimento/workspace/logview/src");
 		configuracao.addFileExtension("txt");
 		//TODO os caminhos da configuração devem vir da interface grafica
 		configuracao.setLog4JPatternLayoutPath("/log4j.properties");

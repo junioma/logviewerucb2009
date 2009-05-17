@@ -1,9 +1,9 @@
-package holders;
+package logview.java.view.holders;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import util.Constantes;
+import logview.resources.util.Constantes;
 
 public class Evento {
 	private Long id;

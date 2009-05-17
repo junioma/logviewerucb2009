@@ -1,7 +1,4 @@
-package util;
-
-import holders.Evento;
-import holders.FiltroPesquisa;
+package logview.java.view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +6,10 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import logview.java.view.holders.Evento;
+import logview.java.view.holders.FiltroPesquisa;
+import logview.resources.util.Constantes;
 
 @SuppressWarnings({"unchecked","deprecation"})
 public class LogView {
