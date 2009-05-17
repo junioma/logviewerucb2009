@@ -1,7 +1,4 @@
-/**
- * 
- */
-package util.chart;
+package logview.resources.util.chart;
 
 import java.io.File;
 import java.util.List;

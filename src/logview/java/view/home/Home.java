@@ -1,15 +1,15 @@
-package home;
-
-import holders.Evento;
-import holders.FiltroPesquisa;
+package logview.java.view.home;
 
 import java.io.IOException;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
-import util.ControlFilter;
-import util.LogView;
+import logview.java.view.LogView;
+import logview.java.view.holders.Evento;
+import logview.java.view.holders.FiltroPesquisa;
+import logview.resources.util.ControlFilter;
+
 
 @SuppressWarnings("unchecked")
 public class Home extends LogView{

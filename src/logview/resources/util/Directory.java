@@ -1,9 +1,9 @@
-package util;
+package logview.resources.util;
+
+import logview.java.entity.Configuration;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import entity.Configuration;
 
 /**Class to represent a list of files inside a directory.
 

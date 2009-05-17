@@ -1,16 +1,15 @@
-package relatorio;
-
-import holders.Evento;
+package logview.java.view.relatorio;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
-import util.LogView;
-import util.chart.Grafico;
-import util.chart.GraficoUtil;
-import util.chart.ItemGrafico;
+import logview.java.view.LogView;
+import logview.java.view.holders.Evento;
+import logview.resources.util.chart.Grafico;
+import logview.resources.util.chart.GraficoUtil;
+import logview.resources.util.chart.ItemGrafico;
 
 @SuppressWarnings({"deprecation","unchecked"})
 public class RelatorioGrafico extends LogView {

@@ -1,5 +1,4 @@
-
-package util.chart;
+package logview.resources.util.chart;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
