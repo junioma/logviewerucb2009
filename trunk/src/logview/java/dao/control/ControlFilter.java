@@ -1,5 +1,5 @@
 package logview.java.dao.control;
-
+ 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +16,11 @@ public class ControlFilter {
 	public static final List<Evento> gerarListaEventos(FiltroPesquisa filtro) throws IOException{
 		List<Evento> listEventos = new ArrayList<Evento>();
 		/*Deve ser configurada previamente com dados da interface web---------------------------*/
-		//TODO Colocar a configuração da Configuration em seu devido lugar na interface do usuário
+		//TODO Colocar a configuraï¿½ï¿½o da Configuration em seu devido lugar na interface do usuï¿½rio
 		Configuration configuracao = Configuration.getInstance();
-		configuracao.setLogsPath("D:/desenvolvimento/workspace/logview/src");
+		configuracao.setLogsPath("C:/Lucene/JavaDotNet/data");
 		configuracao.addFileExtension("txt");
-		//TODO os caminhos da configuração devem vir da interface grafica
+		//TODO os caminhos da configuraï¿½ï¿½o devem vir da interface grafica
 		configuracao.setLog4JPatternLayoutPath("/log4j.properties");
 		//configuracao.addFileExtension("log");
 		//configuracao.addFileExtension("l4j");
@@ -29,7 +29,7 @@ public class ControlFilter {
 		Directory diretorio = new Directory(configuracao.getLogsPath());//Directory used by data 
 		diretorio.loadDataFromDirectory();//Read the data from directory, only the files descriptors
         Parse parse = new Parse(configuracao.getlog4JPatternLayout()); //Pega as mascaras do log4j
-        System.out.println("google:Mascara do log4j:"+parse.getFullParseConversionString());
+        System.out.println("google:Mascara do log4j:"+parse.getFullParseConversionString()+"\n Ela é:"+parse.validateFullParseConversionString());
 		parse.addOrderOfParse(Evento.EVENTO.DATAHORA);
         parse.addOrderOfParse(Evento.EVENTO.ID);
         parse.addOrderOfParse(Evento.EVENTO.NIVEL);
