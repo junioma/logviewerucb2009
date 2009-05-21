@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.web.servlet.tags.EscapeBodyTag;
+
+import com.sun.org.apache.bcel.internal.generic.CPInstruction;
+
 import logview.java.view.holders.Evento;
 
 /**Class to represent a the format of parse from log4j PatternLayout .
@@ -171,6 +175,161 @@ public class Parse {
 		return amountOfMatch >= orderOfParse.size()? true:false;
 	}
 	
+	public boolean validateFullParseConversionString()
+	{
+		boolean retorno=true;
+		int indexAfterMask=0;
+		for(int counter = 0 ; counter<fullParseConversionString.length() ; counter++)
+		{
+			if(fullParseConversionString.charAt(counter)=='%')
+			{
+				indexAfterMask = checkPercent(counter);
+				if(indexAfterMask>0)
+				{
+					counter = indexAfterMask;
+				}
+				else
+				{
+					retorno = false;
+					break;
+				}
+			}
+		}
+		return retorno;
+	}
+	private int checkPercent(int percentPosition) {
+		// TODO Auto-generated method stub
+		int retorno = 0;
+		switch(fullParseConversionString.charAt(percentPosition+1))
+		{
+			case '%' ://the percent character
+			{	
+				retorno = percentPosition+1;
+				break;
+			}
+			case 'd' ://date mask 
+			{	
+				retorno = percentPosition+1;
+				break;
+			}
+			case 'c' : 
+			{	//class mask
+				boolean valid=false;
+				if(fullParseConversionString.charAt(percentPosition+2)=='{')
+				{
+					valid = validateOptions(percentPosition+2,'c');
+					if(valid)
+					{
+						retorno = fullParseConversionString.indexOf('}', percentPosition+2);
+					}
+					else {
+						retorno = percentPosition+1;
+					}
+				}
+				else
+				{
+					retorno = percentPosition+1;
+				}
+				break;
+			}
+			case 'C' : 
+			{	//class caller
+				retorno = percentPosition+1;
+				break;
+			}
+			case 'F' : 
+			{	//File
+				retorno = percentPosition+1;
+				break;
+			}
+			case 'l' : 
+			{	//
+				retorno = percentPosition+1;
+				break;
+			}
+			case 'L' : 
+			{	//Line
+				retorno = percentPosition+1;
+				break;
+			}case 'M' : 
+			{	//method
+				retorno = percentPosition+1;
+				break;
+			}
+			case 'p' : 
+			{	//priority
+				retorno = percentPosition+1;
+				break;
+			}
+			case 'r' : 
+			{	//milliseconds
+				retorno = percentPosition+1;
+				break;
+			}
+			case 't' : 
+			{	//thread
+				retorno = percentPosition+1;
+				break;
+			}
+			case 'm' : 
+			{	//message
+				retorno = percentPosition+1;
+				break;
+			}
+			case 'n' : 
+			{
+				retorno = percentPosition+1;
+				break;
+			}
+			default :
+			{
+				retorno = -1;
+			}
+			
+		}
+		return retorno;
+	}
+	private boolean validateOptions(int firstPosition, char typeOfOption) {
+		// TODO Auto-generated method stub
+		boolean retorno = false;
+		int lastPosition = fullParseConversionString.indexOf('}', firstPosition);
+		if(lastPosition>firstPosition)
+		{
+			switch(typeOfOption)
+			{
+				case 'C':	//Test when is a %c or %C the mask
+				case 'c':	
+				{
+					boolean isDigit =  true;
+					String substring = fullParseConversionString.substring(firstPosition+1, lastPosition);
+					for(int counter = 0;counter<substring.length(); counter ++)
+					{
+						if(!Character.isDigit(substring.charAt(counter)))
+						{
+							isDigit=false;
+						}
+					}
+					if(isDigit)
+					{
+						if(Integer.parseInt(substring)>0)
+						{
+							retorno = true;	//the only way to the return be TRUE
+						}
+					}
+					break;
+				}
+				case 'd':
+				{
+					
+					break;
+				}
+			}
+		}
+		else {
+			retorno = true; // the bracer is a common character
+		}
+		return retorno;
+	}
 	public Long doParseId(StringBuilder eventoString)
 	{
 		boolean valido=true;
