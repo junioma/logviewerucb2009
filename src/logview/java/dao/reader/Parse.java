@@ -3,8 +3,12 @@ package logview.java.dao.reader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.web.servlet.tags.EscapeBodyTag;
+
+import com.sun.org.apache.bcel.internal.generic.CPInstruction;
+
 import logview.java.view.holders.Evento;
-import logview.java.view.holders.Evento.EVENTO;
 
 /**Class to represent a the format of parse from log4j PatternLayout .
 
@@ -17,24 +21,11 @@ import logview.java.view.holders.Evento.EVENTO;
  */
 public class Parse {
 
-	private enum OPTIONS_RETURN_TYPES
-	{
-		VALID,
-		VALID_DATE,
-		VALID_ISO8601,
-		VALID_ABSOLUTE,
-		INVALID,
-		INVALID_BUT_IGNORED,
-		NOT_IS_A_OPTION,
-		UNKNOWN_TYPE_OF_OPTION
-	}
 	//Those attributes are temporary
 	@Deprecated
 	private String filter;
 
     private String fullParseConversionString;
-    
-    private ArrayList<Token> tokenStack;
 	@Deprecated
 	private String idParse;
 	@Deprecated
@@ -54,7 +45,6 @@ public class Parse {
 
 	public Parse()
 	{
-		tokenStack = new ArrayList<Token>();
 	}
 	public Parse(String fullParseConversionString)
 	{
@@ -66,7 +56,6 @@ public class Parse {
 		{
 			this.fullParseConversionString="";
 		}
-		tokenStack = new ArrayList<Token>();
 	}
 
     public String getFullParseConversionString() {
@@ -189,37 +178,21 @@ public class Parse {
 	public boolean validateFullParseConversionString()
 	{
 		boolean retorno=true;
-		int afterLastKnownMask = 0;
+		int indexAfterMask=0;
 		for(int counter = 0 ; counter<fullParseConversionString.length() ; counter++)
 		{
 			if(fullParseConversionString.charAt(counter)=='%')
-			{		
-				if(counter>0)
+			{
+				indexAfterMask = checkPercent(counter);
+				if(indexAfterMask>0)
 				{
-					String paddingTemp;
-					//get the padding
-					paddingTemp = fullParseConversionString.substring(afterLastKnownMask,counter);
-					//Test if the mask have padding or is the begin of the parse string
-					if(paddingTemp.length()>0)
-					{
-						//check if the padding have at last one char 
-						//adiciona um elemento na lista de tokens
-							tokenStack.add(new Token(EVENTO.PADDING,paddingTemp,false));
-					}
-					else {
-						retorno = false;
-						break;
-					}
+					counter = indexAfterMask;
 				}
-				afterLastKnownMask = checkPercent(counter);
-				//something has fail
-				if(afterLastKnownMask<=0)
+				else
 				{
 					retorno = false;
 					break;
 				}
-				counter = afterLastKnownMask;
-				afterLastKnownMask++;
 			}
 		}
 		return retorno;
@@ -231,41 +204,26 @@ public class Parse {
 		{
 			case '%' ://the percent character
 			{	
-				tokenStack.add(new Token(EVENTO.ESCAPE,EVENTO.ESCAPE.getMascara(),false));
 				retorno = percentPosition+1;
 				break;
 			}
 			case 'd' ://date mask 
 			{	
-				OPTIONS_RETURN_TYPES valid=OPTIONS_RETURN_TYPES.INVALID;
+				retorno = percentPosition+1;
+				break;
+			}
+			case 'c' : 
+			{	//class mask
+				boolean valid=false;
 				if(fullParseConversionString.charAt(percentPosition+2)=='{')
 				{
-					valid = validateOptions(percentPosition+2,'d');
-					if(valid==OPTIONS_RETURN_TYPES.VALID || valid==OPTIONS_RETURN_TYPES.VALID_ABSOLUTE || valid==OPTIONS_RETURN_TYPES.VALID_ISO8601 || valid==OPTIONS_RETURN_TYPES.VALID_DATE)
+					valid = validateOptions(percentPosition+2,'c');
+					if(valid)
 					{
 						retorno = fullParseConversionString.indexOf('}', percentPosition+2);
-						if(valid == OPTIONS_RETURN_TYPES.VALID)
-						{
-							tokenStack.add(new Token(EVENTO.DATA,"Alguma EXP",true));
-						}
-						else if (valid == OPTIONS_RETURN_TYPES.VALID_ABSOLUTE) {
-							tokenStack.add(new Token(EVENTO.DATA_ABSOLUTE,"Alguma EXP",true));
-						}
-						else if (valid == OPTIONS_RETURN_TYPES.VALID_DATE) {
-							tokenStack.add(new Token(EVENTO.DATA_DATE,"Alguma EXP",true));
-						}
-						else if (valid == OPTIONS_RETURN_TYPES.VALID_ISO8601) {
-							tokenStack.add(new Token(EVENTO.DATA_ISO8601,"Alguma EXP",true));
-						}
 					}
-					else if(valid == OPTIONS_RETURN_TYPES.NOT_IS_A_OPTION)
-					{
-						tokenStack.add(new Token(EVENTO.PADDING,"{",false));
+					else {
 						retorno = percentPosition+1;
-					}
-					else if(valid == OPTIONS_RETURN_TYPES.INVALID)
-					{
-						retorno = -1 ;
 					}
 				}
 				else
@@ -275,111 +233,65 @@ public class Parse {
 				break;
 			}
 			case 'C' : 
-			case 'c' : 
-			{	//class mask
-				OPTIONS_RETURN_TYPES valid=OPTIONS_RETURN_TYPES.INVALID;
-				if(fullParseConversionString.charAt(percentPosition+2)=='{')
-				{
-					valid = validateOptions(percentPosition+2,'c');
-					if(valid==OPTIONS_RETURN_TYPES.VALID || valid==OPTIONS_RETURN_TYPES.INVALID_BUT_IGNORED)
-					{
-						retorno = fullParseConversionString.indexOf('}', percentPosition+2);
-						if(valid == OPTIONS_RETURN_TYPES.VALID)
-						{
-							if(fullParseConversionString.charAt(percentPosition+1)=='C')
-							{
-								tokenStack.add(new Token(EVENTO.CLASSE,"",false));	
-							}
-							else 
-							{
-								tokenStack.add(new Token(EVENTO.LOGGER,"",false));
-							}
-						}
-					}
-					else if(valid == OPTIONS_RETURN_TYPES.NOT_IS_A_OPTION)
-					{
-						tokenStack.add(new Token(EVENTO.PADDING,"{",false));
-						retorno = percentPosition+1;
-					}
-				}
-				else
-				{
-					if(fullParseConversionString.charAt(percentPosition+1)=='C')
-					{
-						tokenStack.add(new Token(EVENTO.CLASSE,"",false));	
-					}
-					else 
-					{
-						tokenStack.add(new Token(EVENTO.LOGGER,"",false));
-					}
-					retorno = percentPosition+1;
-				}
+			{	//class caller
+				retorno = percentPosition+1;
 				break;
 			}
 			case 'F' : 
 			{	//File
-				tokenStack.add(new Token(EVENTO.ARQUIVO,"",false));
 				retorno = percentPosition+1;
 				break;
 			}
 			case 'l' : 
 			{	//
-				tokenStack.add(new Token(EVENTO.LOCALIZACAOCHAMADOR,"",false));
 				retorno = percentPosition+1;
 				break;
 			}
 			case 'L' : 
 			{	//Line
-				tokenStack.add(new Token(EVENTO.LINHAEVENTO,"",false));
 				retorno = percentPosition+1;
 				break;
 			}case 'M' : 
 			{	//method
-				tokenStack.add(new Token(EVENTO.METODOCHAMADOR,"",false));
 				retorno = percentPosition+1;
 				break;
 			}
 			case 'p' : 
 			{	//priority
-				tokenStack.add(new Token(EVENTO.NIVEL,"",false));
 				retorno = percentPosition+1;
 				break;
 			}
 			case 'r' : 
 			{	//milliseconds
-				tokenStack.add(new Token(EVENTO.TEMPOGASTO,"",false));
 				retorno = percentPosition+1;
 				break;
 			}
 			case 't' : 
 			{	//thread
-				tokenStack.add(new Token(EVENTO.THREAD,"",false));
 				retorno = percentPosition+1;
 				break;
 			}
 			case 'm' : 
 			{	//message
-				tokenStack.add(new Token(EVENTO.MENSAGEM,"",false));
 				retorno = percentPosition+1;
 				break;
 			}
 			case 'n' : 
 			{
-				tokenStack.add(new Token(EVENTO.LINEFEED,"",false));
 				retorno = percentPosition+1;
 				break;
 			}
 			default :
 			{
-				retorno = -1; //nao eh um tipo conhecido , nao suportaremos tipos desconhecidos
+				retorno = -1;
 			}
 			
 		}
 		return retorno;
 	}
-	private OPTIONS_RETURN_TYPES validateOptions(int firstPosition, char typeOfOption) {
+	private boolean validateOptions(int firstPosition, char typeOfOption) {
 		// TODO Auto-generated method stub
-		OPTIONS_RETURN_TYPES retorno = OPTIONS_RETURN_TYPES.INVALID;
+		boolean retorno = false;
 		int lastPosition = fullParseConversionString.indexOf('}', firstPosition);
 		if(lastPosition>firstPosition)
 		{
@@ -397,52 +309,24 @@ public class Parse {
 							isDigit=false;
 						}
 					}
-					if(isDigit && substring.length()>0)
+					if(isDigit)
 					{
 						if(Integer.parseInt(substring)>0)
 						{
-							retorno = OPTIONS_RETURN_TYPES.VALID;	//the only way to the return be TRUE
+							retorno = true;	//the only way to the return be TRUE
 						}
-					}
-					else {
-						retorno = OPTIONS_RETURN_TYPES.INVALID_BUT_IGNORED; //if the value is invalid, log4j use the default class
 					}
 					break;
 				}
 				case 'd':
 				{
-					String substring = fullParseConversionString.substring(firstPosition+1, lastPosition);
-					if(substring.length()>0)
-					{
-						if(substring.toUpperCase().equals("ABSOLUTE"))
-						{
-							retorno = OPTIONS_RETURN_TYPES.VALID_ABSOLUTE;	//the only way to the return be TRUE
-						}
-						else if(substring.toUpperCase().equals("ISO8601"))
-						{
-							retorno = OPTIONS_RETURN_TYPES.VALID_ISO8601;
-						}
-						else if(substring.toUpperCase().equals("DATE"))
-						{
-							retorno = OPTIONS_RETURN_TYPES.VALID_DATE;
-						}
-						else {
-							retorno = OPTIONS_RETURN_TYPES.INVALID;
-						}
-					}
-					else {
-						retorno = OPTIONS_RETURN_TYPES.INVALID; //if the value is invalid, log4j use the default class
-					}
+					
 					break;
-				}
-				default :
-				{
-					retorno = OPTIONS_RETURN_TYPES.UNKNOWN_TYPE_OF_OPTION;
 				}
 			}
 		}
 		else {
-			retorno = OPTIONS_RETURN_TYPES.NOT_IS_A_OPTION; // the bracer is a common character
+			retorno = true; // the bracer is a common character
 		}
 		return retorno;
 	}
