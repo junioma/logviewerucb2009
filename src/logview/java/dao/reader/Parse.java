@@ -3,9 +3,6 @@ package logview.java.dao.reader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
-
-import sun.font.TrueTypeFont;
 import logview.java.view.holders.Evento;
 import logview.java.view.holders.Evento.EVENTO;
 import logview.resources.util.constraints.Constantes;
@@ -197,7 +194,6 @@ public class Parse {
 		boolean retorno = false;
 		Token tokenTemp = tokenStack.get(tokenOfTheMoment);
 		EVENTO tokenTempType = tokenTemp.getTokenType();
-		boolean foundTheValue = true;
 		int posicaoAtualNaString = coordenadaPosicaoAtualNaString.getPrimeiraCoordenada();
 		if(tokenTempType == EVENTO.PADDING)
 		{
@@ -210,7 +206,6 @@ public class Parse {
 					int caractereFinalPadding = tokenTemp.getTokenValue().length()-1;
 					String subStringTest = eventString.substring(posicaoAtualNaString,posicaoAtualNaString+caractereFinalPadding +1 );
 					//TODO deletar essew linha abaixo
-					String tempPleaseDelete = tokenTemp.getTokenValue();
 					if(tokenTemp.getTokenValue().equals(subStringTest))
 					{
 						posicaoAtualNaString += caractereFinalPadding +1 ;
@@ -242,7 +237,6 @@ public class Parse {
 					}
 					String subStringTest = eventString.substring(posicaoAtualNaString - tamanhoValorPadding,posicaoAtualNaString);
 					//TODO deletar essew linha abaixo
-					String tempPleaseDelete = tokenTemp.getTokenValue();
 					if(tokenTemp.getTokenValue().equals(subStringTest))
 					{
 						posicaoAtualNaString -= tamanhoValorPadding ;
