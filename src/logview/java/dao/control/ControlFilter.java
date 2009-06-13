@@ -18,9 +18,9 @@ public class ControlFilter {
 		/*Deve ser configurada previamente com dados da interface web---------------------------*/
 		//TODO Colocar a configuraï¿½ï¿½o da Configuration em seu devido lugar na interface do usuï¿½rio
 		Configuration configuracao = Configuration.getInstance();
-		configuracao.setLogsPath("C:/Lucene/JavaDotNet/data");
+		configuracao.setLogsPath("C:/Lucene/JavaDotNet/data/new");
 		configuracao.addFileExtension("txt");
-		//TODO os caminhos da configuraï¿½ï¿½o devem vir da interface grafica
+		//TODO os caminhos da configuraço devem vir da interface grafica
 		configuracao.setLog4JPatternLayoutPath("/log4j.properties");
 		//configuracao.addFileExtension("log");
 		//configuracao.addFileExtension("l4j");
@@ -30,15 +30,9 @@ public class ControlFilter {
 		diretorio.loadDataFromDirectory();//Read the data from directory, only the files descriptors
         Parse parse = new Parse(configuracao.getlog4JPatternLayout()); //Pega as mascaras do log4j
         System.out.println("google:Mascara do log4j:"+parse.getFullParseConversionString()+"\n Ela é:"+parse.validateFullParseConversionString());
-		parse.addOrderOfParse(Evento.EVENTO.DATAHORA);
-        parse.addOrderOfParse(Evento.EVENTO.ID);
-        parse.addOrderOfParse(Evento.EVENTO.NIVEL);
-        parse.addOrderOfParse(Evento.EVENTO.CLASSE);
-        parse.addOrderOfParse(Evento.EVENTO.MENSAGEM); 
-        System.out.println(Evento.EVENTO.DATAHORA.ordinal()+" "+Evento.EVENTO.DATAHORA.name()+" "+Evento.EVENTO.DATAHORA.getMascara()+" google:Quantidade total de regitros:"+SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse,filtro));
-        //SequencialReader.readEventsAll(diretorio.getDirectoryFiles(), arrayListDeEventos,parse,500,600);
-		//SequencialReader.readEventsCheckingByFilter(diretorio.getDirectoryFiles(), arrayListDeEventos, parse, filtro, 2, 5);
-        SequencialReader.readEventsCheckingByFilter(diretorio.getDirectoryFiles(), listEventos, parse, filtro, 1, SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse,filtro));
+
+        System.out.println(Evento.EVENTO.DATA.ordinal()+" "+Evento.EVENTO.DATA.name()+" "+Evento.EVENTO.DATA.getMascara()+" google:Quantidade total de regitros:");
+        SequencialReader.readEventsCheckingByFilter(diretorio.getDirectoryFiles(), listEventos, parse, filtro, 1, 50);
         //CastEvento.manyFromString(arrayListDeEventos, listEventos,parse);;
 		return listEventos;
 	}
