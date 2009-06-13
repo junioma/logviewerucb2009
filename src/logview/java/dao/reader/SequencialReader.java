@@ -11,7 +11,7 @@ import logview.java.view.holders.Evento;
 import logview.java.view.holders.FiltroPesquisa;
 
 
-/**Class to do all the sequencial read work without use index.
+/**Class to do all the sequential read work without use index.
 
  * @author Bruno / Junio / Matheus
 
@@ -30,80 +30,76 @@ public class SequencialReader {
 	 * @param  arrayListDeEventos	This parameter will receive all lines reads from files.
 	 * @return void
 	 */
-
+	//TODO Mudar para usando o readEventsCheckingByFilter passando o valor máximo e valor minimo
 	public static int readEventsAll(ArrayList<File> arrayListDoDiretorio,ArrayList<String> arrayListDeEventos,Parse parse,int begin,int end) throws IOException{
-		String eventoTemp="";
-		int counterOfMaxEvents=-1;
-		if(begin==1)//se for o inicio, testa quantos elementos existem
-		{
-			counterOfMaxEvents=countEvents(arrayListDoDiretorio,parse);
-		}
-		for(int counter =0,counterOfEvents=1 ; counter <arrayListDoDiretorio.size()&&counterOfEvents<end;counter++ ){
-			FileReader arquivo = new FileReader(arrayListDoDiretorio.get(counter));
-			BufferedReader buffer = new BufferedReader(arquivo);
-			while(((eventoTemp=buffer.readLine())!=null)&&counterOfEvents<end)
-			{
-                if(parse.validateEvent(eventoTemp))
-                {
-                	counterOfEvents++;
-                	if(counterOfEvents>=begin)
-                	{
-                		arrayListDeEventos.add(new String(eventoTemp));
-                	}
-                }
-			}
-		}
-		return counterOfMaxEvents;
+		return 0;
 	}
 	
 	/**
 	 *This method read all files received by first parameter and write all lines from these files into the second 
-	 *parameter using the validation the parse object that was received in the third parameter .
+	 *parameter using the validation of the parse object that was received in the third parameter and checking by 
+	 *filters of the fourth parameter. The values mus be at the range of begin and end.
 	 *
 	 * @param  arrayListDoDiretorio	This parameter must have a list of all files that will be read.
 	 * @param  arrayListDeEventos	This parameter will receive all lines reads from files.
+	 * @param  parse	This parameter will be used to validate all lines of file.
+	 * @param  filtro	This parameter will be used to validade the user search condition.
+	 * @param  begin	This parameter will be used to control the user pagination.
+	 * @param  end	This parameter will be used to control the user pagination.
 	 * @return void
 	 */
-
 	public static void readEventsCheckingByFilter(ArrayList<File> arrayListDoDiretorio,List<Evento> arrayListDeEventos,Parse parse,FiltroPesquisa filtro, int begin,int end) throws IOException{
 		String eventoStringTemp="";
-		//TODO
+		int numberMaxOfLineFeed = parse.getNumberOfLineFeed();
+		int numberOfLineInEvent = 1;
+		Evento tempEvent = new Evento() ;
+		
 		for(int counter =0,counterOfEvents=1 ; counter <arrayListDoDiretorio.size()&&counterOfEvents<=end;counter++ ){
 			FileReader arquivo = new FileReader(arrayListDoDiretorio.get(counter));
 			BufferedReader buffer = new BufferedReader(arquivo);
 			while((eventoStringTemp=buffer.readLine())!=null && counterOfEvents<=end)
 			{
-				//TODO
-				if(parse.validateEvent(eventoStringTemp))
+				//TODO Terminar classes envolvidas ness processo
+				if(parse.validateLineOfEvent(eventoStringTemp,numberOfLineInEvent,tempEvent))//an event have got many lines
                 {
-                	counterOfEvents++;
-                	Evento tempEvent = CastEvento.oneFromString(eventoStringTemp,parse);
-                	if(tempEvent!=null)
-                	{
-	                	if(counterOfEvents>=begin && filtro.atendeFiltroPesquisa(tempEvent))
-	                	{
-	                		//arrayListDeEventos.add(new String(eventoStringTemp));
-	                		arrayListDeEventos.add(tempEvent);
-	                	}
-                	}
+					if(numberOfLineInEvent>=numberMaxOfLineFeed)// Se o numero necessários de linhas já foi lido e aprovado
+					{
+						if(tempEvent != null)//Se o evento lido é válido
+						{
+		                	counterOfEvents++;	               
+		                	if(counterOfEvents>=begin && filtro.atendeFiltroPesquisa(tempEvent))
+		                	{
+		                		arrayListDeEventos.add(tempEvent);
+		                	}
+						}
+						tempEvent = new Evento();
+					}
+					numberOfLineInEvent++;
 				}
-			}
+				
+				if(numberOfLineInEvent>=numberMaxOfLineFeed)
+                {
+					numberOfLineInEvent=1;
+					tempEvent = new Evento();
+                }
+			}//end while
 			arquivo.close();
-		}
+		}//end for
 
 	}
-	
+	//TODO Mudar isso pois é utilizado para a paginação
 	public static int countEventsByParse(ArrayList<File> arrayListDoDiretorio,Parse parse,FiltroPesquisa filtro) throws IOException 
 	{
 		String eventoStringTemp="";
 		int counterOfSearchEvents = 0;
-		//TODO
+		//TODO configurar para o novo formato
 		for(int counter =0; counter <arrayListDoDiretorio.size();counter++ ){
 			FileReader arquivo = new FileReader(arrayListDoDiretorio.get(counter));
 			BufferedReader buffer = new BufferedReader(arquivo);
 			while((eventoStringTemp=buffer.readLine())!=null)
 			{
-				if(parse.validateEvent(eventoStringTemp))
+				//TODO configurar para o novo formato
+				if(parse.validateLineOfEvent(eventoStringTemp,0,null))
                 {
                 	Evento tempEvent = CastEvento.oneFromString(eventoStringTemp,parse);
                 	if(tempEvent!=null)
@@ -129,7 +125,8 @@ public class SequencialReader {
 			BufferedReader buffer = new BufferedReader(arquivo);
 			while((eventoTemp=buffer.readLine())!=null)
 			{
-				if(parse.validateEvent(eventoTemp))
+				//TODO configurar para o novo formato
+				if(parse.validateLineOfEvent(eventoTemp,0,null))
 				{
 					counterOfEvents++;
 				}
