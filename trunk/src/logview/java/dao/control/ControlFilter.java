@@ -10,30 +10,42 @@ import logview.java.dao.reader.SequencialReader;
 import logview.java.entity.Configuration;
 import logview.java.view.holders.Evento;
 import logview.java.view.holders.FiltroPesquisa;
+import logview.resources.util.constraints.Constantes;
 
 public class ControlFilter {
 	
 	public static final List<Evento> gerarListaEventos(FiltroPesquisa filtro) throws IOException{
+		//ArrayList que contem a lista de todos os Eventos lidos
 		List<Evento> listEventos = new ArrayList<Evento>();
-		/*Deve ser configurada previamente com dados da interface web---------------------------*/
-		//TODO Colocar a configuraï¿½ï¿½o da Configuration em seu devido lugar na interface do usuï¿½rio
+		/*Pega a instancia da classe de configuração*/
 		Configuration configuracao = Configuration.getInstance();
-		configuracao.setLogsPath("C:/Lucene/JavaDotNet/data/new");
+		/*Le os dados de configuração do propertie de configuração da aplicação. msg de erro na interface precisa ser implementada*/
+		if(configuracao.readDataFromConfigurationProperties())
+		{
+			System.out.println("********\n    Configuration properties read succeseful at: "+Constantes.PATH_CONFIGURATION_PROPERTIES+"\n********\n");
+		}
+		else//precisa lançar alguma exception
+		{
+			System.out.println("Configuration properties NOT READ at: "+Constantes.PATH_CONFIGURATION_PROPERTIES);
+		}
+		/*Isso ainda precisa ser estudado se ficará no properties*/
 		configuracao.addFileExtension("txt");
-		//TODO os caminhos da configuraço devem vir da interface grafica
-		configuracao.setLog4JPatternLayoutPath("/log4j.properties");
-		//configuracao.addFileExtension("log");
-		//configuracao.addFileExtension("l4j");
 		configuracao.addFileExtension(new String(""));
 		/*--------------------------------------------------------------------------------------*/
-		Directory diretorio = new Directory(configuracao.getLogsPath());//Directory used by data 
+		Directory diretorio = new Directory(configuracao.getLogsPath());//Directory where data are stored. 
 		diretorio.loadDataFromDirectory();//Read the data from directory, only the files descriptors
         Parse parse = new Parse(configuracao.getlog4JPatternLayout()); //Pega as mascaras do log4j
-        System.out.println("google:Mascara do log4j:"+parse.getFullParseConversionString()+"\n Ela é:"+parse.validateFullParseConversionString());
-
-        System.out.println(Evento.EVENTO.DATA.ordinal()+" "+Evento.EVENTO.DATA.name()+" "+Evento.EVENTO.DATA.getMascara()+" google:Quantidade total de regitros:");
+        if(parse.validateFullParseConversionString())
+		{
+			System.out.println("********\n    The log4j Mask is valid!\n    The mask value: "+parse.getFullParseConversionString()+"\n********\n");
+		}
+		else//precisa lançar alguma exception
+		{
+			System.out.println("********\n    The log4j Mask is NOT valid!\n    The mask value: "+parse.getFullParseConversionString()+"\n********\n");
+		}
+        System.out.println("====\n     Hosted at: Google Code\n     Quantidade total de regitros:"+SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse, filtro)+"\n====\n");
+        /*Le os dados dos dirétorios informados, guardando os evento em uma lista de evento, com base em um parse, filtrando, sendo que traz os registros de x até y */
         SequencialReader.readEventsCheckingByFilter(diretorio.getDirectoryFiles(), listEventos, parse, filtro, 1, 50);
-        //CastEvento.manyFromString(arrayListDeEventos, listEventos,parse);;
 		return listEventos;
 	}
 	

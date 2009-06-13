@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -9,6 +10,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import logview.resources.util.constraints.Constantes;
 
 
 /**This Singleton Class hold the basic configuration of the application.
@@ -30,6 +33,50 @@ public class Configuration {
 		log4JPatternLayoutPath = null;
 		fileExtension = new ArrayList<String>();
 	}
+	/**
+	 * This method read the data from configuration.properties. 
+	 * This propertie is saved at Constantes.PATH_CONFIGURATION_PROPERTIES. 
+	 * @return boolean Return is the data from properties was read.
+	 */
+	public boolean readDataFromConfigurationProperties ()
+	{
+		boolean isSucess = true;
+		
+		InputStream is;   
+	    Properties properties = new Properties();   
+	       
+	    try {      
+	        is = Thread.currentThread().getContextClassLoader().getResourceAsStream(Constantes.PATH_CONFIGURATION_PROPERTIES);
+	        properties.load(is); 
+	        this.setLogsPath(properties.getProperty("easy2c.dataPath"));
+	        this.setLog4JPatternLayoutPath(properties.getProperty("easy2c.log4jPath"));
+	        
+	        
+	           
+	    } 
+	    catch (FileNotFoundException ex) {   
+	        ex.printStackTrace(); 
+	        isSucess = false;
+	    } 
+	    catch (IOException ex) {   
+	        ex.printStackTrace();   
+	        isSucess = false;
+	    }
+	    catch (IllegalArgumentException  ex) {
+			ex.printStackTrace(); 
+			isSucess = false;
+		}
+	    catch (Exception e) {
+			e.printStackTrace();
+			isSucess = false;
+		}
+	    
+		
+		return isSucess;
+	}
+	
+	
+	
 	public String getLogsPath() {
 		return logsPath;
 	}
@@ -51,6 +98,13 @@ public class Configuration {
 	public void setFileExtension(List<String> fileExtension) {
 		this.fileExtension = fileExtension;
 	}
+	/**
+	 * This method adds new files extentions.
+	 * @param fileExtension A string thats represent a file extension.
+	 * @return int A positive number to sucesse os a negative number to a fail.
+	 * If the negative number is -1: some value passed to mathoed is null
+	 * If the negative number is -2: The collection failed to add the value.
+	 */
 	public int addFileExtension(String fileExtension){
 		int indexAdded=-1;
 		if(this.fileExtension!=null && fileExtension!=null){
@@ -66,7 +120,10 @@ public class Configuration {
 		}
 		return indexAdded;
 	}
-	
+	/**
+	 * This method implements the pattern Singleton
+	 * @return Configuration return the instance of class
+	 */
 	public static Configuration getInstance(){
 		if (uniqueInstance == null){
 			uniqueInstance = new Configuration();
