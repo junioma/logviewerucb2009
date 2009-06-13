@@ -301,8 +301,13 @@ public class Parse {
 			}
 			
 			if(directionOfRead == DIRECTION.RIGHT)
-			{
-				dateTempToMatch = eventString.substring(posicaoAtualNaString, posicaoAtualNaString + sizeOfDateValue );
+			{	
+				//TODO erro
+				//Erro!
+				if(posicaoAtualNaString + sizeOfDateValue<=eventString.length())
+				{
+					dateTempToMatch = eventString.substring(posicaoAtualNaString, posicaoAtualNaString + sizeOfDateValue );
+				}
 				posicaoAtualNaString+=sizeOfDateValue;
 			}
 			else {
@@ -327,7 +332,7 @@ public class Parse {
 				if(tokenTempType == EVENTO.DATA || tokenTempType == EVENTO.DATA_ISO8601)
 				{
 					year = Integer.parseInt(dateTempToMatch.substring(0, 4));
-					month = Integer.parseInt(dateTempToMatch.substring(5, 7));
+					month = Integer.parseInt(dateTempToMatch.substring(5, 7))-1; //it is 0 based
 					date = Integer.parseInt(dateTempToMatch.substring(8, 10));
 					hour = Integer.parseInt(dateTempToMatch.substring(11, 13));
 					minute = Integer.parseInt(dateTempToMatch.substring(14,16));
@@ -339,50 +344,50 @@ public class Parse {
 					String monthString = dateTempToMatch.substring(3,6); 
 					if(monthString.equals("Jan"))
 					{
-						month=1;
+						month=0;
 					}else if(monthString.equals("Fev"))
 					{
-						month=2;
+						month=1;
 					}
 					else if(monthString.equals("Mar"))
 					{
-						month=3;
+						month=2;
 					}
 					else if(monthString.equals("Apr"))
 					{
-						month=4;
+						month=3;
 					}
 					else if(monthString.equals("May"))
 					{
-						month=5;
+						month=4;
 					}
 					else if(monthString.equals("Jun"))
 					{
-						month=6;
+						month=5;
 					}
 					else if(monthString.equals("Jul"))
 					{
-						month=7;
+						month=6;
 					}
 					else if(monthString.equals("Aug"))
 					{
-						month=8;
+						month=7;
 					}
 					else if(monthString.equals("Set"))
 					{
-						month=9;
+						month=8;
 					}
 					else if(monthString.equals("Oct"))
 					{
-						month=10;
+						month=9;
 					}
 					else if(monthString.equals("Nov"))
 					{
-						month=11;
+						month=10;
 					}
 					else
 					{
-						month=12;
+						month=11;
 					}
 					date = Integer.parseInt(dateTempToMatch.substring(0,2));
 					year = Integer.parseInt(dateTempToMatch.substring(7,11));
@@ -481,7 +486,7 @@ public class Parse {
 			}
 			else if(tokenTempType == EVENTO.METODOCHAMADOR)
 			{
-				this.getParsingEvent().setMensagem(tempValue);
+				this.getParsingEvent().setMetodoChamador(tempValue);
 			}
 			else if(tokenTempType == EVENTO.ARQUIVO)
 			{
@@ -588,6 +593,10 @@ public class Parse {
 		return retorno;
 		
 	}
+	/**
+	 * Validate the log4j mask used at log4j properties.
+	 * @return boolean If the log4j mask is valid
+	 */
 	public boolean validateFullParseConversionString()
 	{
 		boolean retorno=true;

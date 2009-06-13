@@ -76,8 +76,12 @@ public class SequencialReader {
 					}
 					numberOfLineInEvent++;
 				}
+				else {
+					numberOfLineInEvent=1;
+					tempEvent = new Evento();
+				}
 				
-				if(numberOfLineInEvent>=numberMaxOfLineFeed)
+				if(numberOfLineInEvent>numberMaxOfLineFeed)
                 {
 					numberOfLineInEvent=1;
 					tempEvent = new Evento();
@@ -90,48 +94,49 @@ public class SequencialReader {
 	//TODO Mudar isso pois é utilizado para a paginação
 	public static int countEventsByParse(ArrayList<File> arrayListDoDiretorio,Parse parse,FiltroPesquisa filtro) throws IOException 
 	{
+		int counterOfEvents = 0;
+		
 		String eventoStringTemp="";
-		int counterOfSearchEvents = 0;
-		//TODO configurar para o novo formato
-		for(int counter =0; counter <arrayListDoDiretorio.size();counter++ ){
+		int numberMaxOfLineFeed = parse.getNumberOfLineFeed();
+		int numberOfLineInEvent = 1;
+		Evento tempEvent = new Evento() ;
+		
+		for(int counter =0; counter <arrayListDoDiretorio.size();counter++){
 			FileReader arquivo = new FileReader(arrayListDoDiretorio.get(counter));
 			BufferedReader buffer = new BufferedReader(arquivo);
 			while((eventoStringTemp=buffer.readLine())!=null)
 			{
-				//TODO configurar para o novo formato
-				if(parse.validateLineOfEvent(eventoStringTemp,0,null))
+				//TODO Terminar classes envolvidas ness processo
+				if(parse.validateLineOfEvent(eventoStringTemp,numberOfLineInEvent,tempEvent))//an event have got many lines
                 {
-                	Evento tempEvent = CastEvento.oneFromString(eventoStringTemp,parse);
-                	if(tempEvent!=null)
-                	{
-	                	if(filtro.atendeFiltroPesquisa(tempEvent))
-	                	{
-	                		counterOfSearchEvents++;
-	                	}
-                	}
+					if(numberOfLineInEvent>=numberMaxOfLineFeed)// Se o numero necessários de linhas já foi lido e aprovado
+					{
+						if(tempEvent != null)//Se o evento lido é válido
+						{	               
+		                	if(filtro.atendeFiltroPesquisa(tempEvent))
+		                	{
+		                		counterOfEvents++;;
+		                	}
+						}
+						tempEvent = new Evento();
+					}
+					numberOfLineInEvent++;
 				}
-			}
+				else {
+					numberOfLineInEvent=1;
+					tempEvent = new Evento();
+				}
+				
+				if(numberOfLineInEvent>numberMaxOfLineFeed)
+                {
+					numberOfLineInEvent=1;
+					tempEvent = new Evento();
+                }
+			}//end while
 			arquivo.close();
-		}
-		return counterOfSearchEvents;
-	}
-	
-	public static int countEvents(ArrayList<File> arrayListDoDiretorio,Parse parse) throws IOException
-	{
-		int counterOfEvents=0;
-		String eventoTemp="";
-		for(int counter =0 ; counter <arrayListDoDiretorio.size();counter++ ){
-			FileReader arquivo = new FileReader(arrayListDoDiretorio.get(counter));
-			BufferedReader buffer = new BufferedReader(arquivo);
-			while((eventoTemp=buffer.readLine())!=null)
-			{
-				//TODO configurar para o novo formato
-				if(parse.validateLineOfEvent(eventoTemp,0,null))
-				{
-					counterOfEvents++;
-				}
-			}
-		}
+		}//end for
+		
 		return counterOfEvents;
 	}
+	
 }
