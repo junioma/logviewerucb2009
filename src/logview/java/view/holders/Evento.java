@@ -8,6 +8,8 @@ import logview.resources.util.constraints.Constantes;
 public class Evento {
 	private Long id;
 	private Date dataHora;
+	//type of used date. This may used to display the date properly 
+	private EVENTO dateType;
 	private String classe;
 	private String mensagem;
 	private String arquivo;
@@ -17,21 +19,30 @@ public class Evento {
 	private String localizacaoChamador;
 	private int linhaEvento;
 	private String metodoChamador;
+	private String tempoGasto;
+	
 	
 	
 	public enum EVENTO
 	{
 		ID(""),
-		DATAHORA("%d"),
+		DATA("%d"),
+		DATA_ABSOLUTE("%d{ABSOLUTE}"),
+		DATA_ISO8601("%d{ISO8601}"),
+		DATA_DATE("%d{DATE}"),
 		CLASSE("%C"),
 		MENSAGEM("%m"),
 		ARQUIVO("%F"),
 		THREAD("%t"),
-		LOGGER(""),
+		LOGGER("%c"),
 		NIVEL("%p"),
+		TEMPOGASTO("%r"),
 		LOCALIZACAOCHAMADOR("%l"),
 		LINHAEVENTO("%L"),
-		METODOCHAMADOR("%M");
+		METODOCHAMADOR("%M"),
+		PADDING(""),
+		LINEFEED("%n"),
+		ESCAPE("%");
 		private String mascara;
 		private EVENTO(String mascara)
 		{
@@ -43,6 +54,7 @@ public class Evento {
 		}
 		
 	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -54,6 +66,13 @@ public class Evento {
 	}
 	public void setDataHora(Date dataHora) {
 		this.dataHora = dataHora;
+	}
+	
+	public EVENTO getDateType() {
+		return dateType;
+	}
+	public void setDateType(EVENTO dateType) {
+		this.dateType = dateType;
 	}
 	public String getClasse() {
 		return classe;
@@ -92,6 +111,12 @@ public class Evento {
 		this.nivel = nivel;
 	}
 	
+	public String getTempoGasto() {
+		return tempoGasto;
+	}
+	public void setTempoGasto(String tempoGasto) {
+		this.tempoGasto = tempoGasto;
+	}
 	public boolean isNivelDebug(){
 		return (getNivel() == Constantes.NIVEL_DEBUG.intValue());
 	}

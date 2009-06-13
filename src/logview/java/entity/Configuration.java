@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 
-/**This Class hold the basic configuration of the application.
+/**This Singleton Class hold the basic configuration of the application.
 
  * @author Bruno / Junio / Matheus
 
