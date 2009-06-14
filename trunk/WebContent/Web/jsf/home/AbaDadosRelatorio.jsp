@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
 <%@ taglib uri="http://xmlns.oracle.com/adf/faces" prefix="af"%>
 
-<af:showDetailItem text="Relatórios" immediate="true"
+<af:showDetailItem text="Relatório" immediate="true"
 	inlineStyle="font-size: 8pt">
 	<h:panelGrid>
 		<af:objectImage source="#{relatorioGrafico.caminhoGrafico}" rendered="#{relatorioGrafico.caminhoGrafico != null}"/>

@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
 <%@ taglib uri="http://xmlns.oracle.com/adf/faces" prefix="af"%>
 
-<af:showDetailItem text="Resultados" immediate="true"
+<af:showDetailItem text="Pesquisa" immediate="true"
 	inlineStyle="font-size: 8pt">
 	<af:panelHeader text="Filtros">
 		
