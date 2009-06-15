@@ -29,8 +29,6 @@ public class ControlFilter {
 			System.out.println("Configuration properties NOT READ at: "+Constantes.PATH_CONFIGURATION_PROPERTIES);
 		}
 		/*Isso ainda precisa ser estudado se ficará no properties*/
-		configuracao.addFileExtension("txt");
-		configuracao.addFileExtension(new String(""));
 		/*--------------------------------------------------------------------------------------*/
 		Directory diretorio = new Directory(configuracao.getLogsPath());//Directory where data are stored. 
 		diretorio.loadDataFromDirectory();//Read the data from directory, only the files descriptors
