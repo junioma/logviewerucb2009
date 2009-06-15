@@ -67,7 +67,14 @@ public class Configuration {
 	    try {
 	    	String tempExtension,tempArrayExtension[];
 	        is = Thread.currentThread().getContextClassLoader().getResourceAsStream(Constantes.PATH_CONFIGURATION_PROPERTIES);
-	        properties.load(is); 
+	        if(is!=null)
+	        {
+	        	properties.load(is);	
+	        }
+	        else
+	        {
+	        	return false;
+	        }
 	        this.setLogsPath(properties.getProperty("easy2c.dataPath"));
 	        this.setLog4JPatternLayoutPath(properties.getProperty("easy2c.log4jPath"));
 	        tempExtension = properties.getProperty("easy2c.extensions");
@@ -182,16 +189,28 @@ public class Configuration {
 	       
 	    try {      
 	        is = Thread.currentThread().getContextClassLoader().getResourceAsStream(getLog4JPatternLayoutPath());
-	        //TODO Deve usar o caminho passado pela interface grafica
-	        //is = Thread.currentThread().getContextClassLoader().getResourceAsStream(log4JPatternLayoutPath);
-	        properties.load(is); 
+	        if(is!=null)
+	        {
+	        	properties.load(is);
+	        }
+	        else
+	        {
+	        	System.out.println("Log4j properties NOT READ at: "+getLog4JPatternLayoutPath());
+				throw new RuntimeException("Log4j properties NOT READ at: "+getLog4JPatternLayoutPath());
+	        }
 	        result = properties.getProperty("log4j.appender.stdout.layout.ConversionPattern");
 	           
 	    } catch (FileNotFoundException ex) {   
 	        ex.printStackTrace();   
+	        System.out.println("Log4j properties NOT READ at: "+getLog4JPatternLayoutPath());
+			throw new RuntimeException("Log4j properties NOT READ at: "+getLog4JPatternLayoutPath());
 	    } catch (IOException ex) {   
 	        ex.printStackTrace();   
 	    }   
+	    catch (Exception e) {
+	    	System.out.println("Log4j properties NOT READ at: "+getLog4JPatternLayoutPath());
+			throw new RuntimeException("Log4j properties NOT READ at: "+getLog4JPatternLayoutPath());
+		}
 	       
 	    return result; 
 	}
