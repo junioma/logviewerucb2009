@@ -45,13 +45,38 @@ public class Configuration {
 		InputStream is;   
 	    Properties properties = new Properties();   
 	       
-	    try {      
+	    try {
+	    	String tempExtension,tempArrayExtension[];
 	        is = Thread.currentThread().getContextClassLoader().getResourceAsStream(Constantes.PATH_CONFIGURATION_PROPERTIES);
 	        properties.load(is); 
 	        this.setLogsPath(properties.getProperty("easy2c.dataPath"));
 	        this.setLog4JPatternLayoutPath(properties.getProperty("easy2c.log4jPath"));
-	        
-	        
+	        tempExtension = properties.getProperty("easy2c.extensions");
+	        if (tempExtension != null && tempExtension.length()>0)
+	        {
+	        		tempArrayExtension = tempExtension.split(",");
+	        		for(int count = 0;count<tempArrayExtension.length;count++)
+	        		{
+	        			if(tempArrayExtension[count]!=null)
+	        			{
+	        				this.addFileExtension(tempArrayExtension[count]);
+	        			}
+	        		}
+	        		tempExtension = properties.getProperty("easy2c.extensionsEmpty");
+	        		if(tempExtension != null)
+	        		{
+	        			if(tempExtension.toLowerCase().equals("yes"))
+	        			{
+	        				this.addFileExtension("");
+	        			}
+	        		}
+	        }
+	        else
+	        {
+	        	this.addFileExtension("txt");
+        		this.addFileExtension("log");
+        		this.addFileExtension("");
+	        }
 	           
 	    } 
 	    catch (FileNotFoundException ex) {   
