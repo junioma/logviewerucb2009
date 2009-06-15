@@ -46,6 +46,7 @@ public class ControlFilter {
 		else//precisa lançar alguma exception
 		{
 			System.out.println("Configuration properties NOT READ at: "+Constantes.PATH_CONFIGURATION_PROPERTIES);
+			throw new RuntimeException("Configuration properties NOT READ at: "+Constantes.PATH_CONFIGURATION_PROPERTIES);
 		}
 		/*Isso ainda precisa ser estudado se ficará no properties*/
 		/*--------------------------------------------------------------------------------------*/
@@ -58,7 +59,8 @@ public class ControlFilter {
 		}
 		else//precisa lançar alguma exception
 		{
-			System.out.println("********\n    The log4j Mask is NOT valid!\n    The mask value: "+parse.getFullParseConversionString()+"\n********\n");
+			System.out.println("********\n    The log4j Mask is NOT a valid mask!\n    The mask value: "+parse.getFullParseConversionString()+"\n********\n");
+			throw new RuntimeException("The log4j Mask is NOT a valid mask!\n    The mask value: "+parse.getFullParseConversionString());
 		}
         System.out.println("====\n     Hosted at: Google Code\n     Quantidade total de regitros:"+SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse, filtro)+"\n====\n");
         /*Le os dados dos dirétorios informados, guardando os evento em uma lista de evento, com base em um parse, filtrando, sendo que traz os registros de x até y */

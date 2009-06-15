@@ -132,10 +132,10 @@ public class Directory {
 	public void loadDataFromDirectory() throws IOException {
 		if (directory == null)
 		{
-			throw new IOException("You must specify a path.");
+			throw new RuntimeException("A valid data file must be specified at properties file.");
 		}
 		if (!directory.exists() || !directory.isDirectory()) {
-            throw new IOException(directory + " do not exist or not is a directory.");
+            throw new RuntimeException("The supose directory:"+directory + ", do not exist or not is a directory.");
         }
 		recursiveDirectoryWalker(getDirectory(),getDirectoryFiles());
 	}
