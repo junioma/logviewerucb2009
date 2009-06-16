@@ -19,7 +19,7 @@
       </tr>
       <tr bgcolor="#EFEBDE">
         <td width="100%" colspan="2" align="center" style="font-size: 14" height="19">
-          Ocorreu um erro ao processar a sua operação, favor entrar em contato com o administrador.
+          Ocorreu um erro ao processar a sua operação, favor entrar em contato com um administrador da ferramenta.
         </td>
       </tr>
       <tr bgcolor="#EFEBDE">
