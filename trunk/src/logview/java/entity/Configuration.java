@@ -1,9 +1,9 @@
 /*
  * Copyright 2003-2008 Universidade Católica de Brasília, Brasil
  *
- * Este arquivo é parte do Easy2C.
+ * Este arquivo é parte do jmblogview.
  *
- * O Easy2C é um software livre; você pode redistribui-lo e/ou modificá-lo
+ * O jmblogview é um software livre; você pode redistribui-lo e/ou modificá-lo
  * dentro dos termos da Licença Pública Geral GNU versão 2 como publicada
  * pela Fundação do Software Livre (FSF).
  *
@@ -75,9 +75,9 @@ public class Configuration {
 	        {
 	        	return false;
 	        }
-	        this.setLogsPath(properties.getProperty("easy2c.dataPath"));
-	        this.setLog4JPatternLayoutPath(properties.getProperty("easy2c.log4jPath"));
-	        tempExtension = properties.getProperty("easy2c.extensions");
+	        this.setLogsPath(properties.getProperty("jmblogview.dataPath"));
+	        this.setLog4JPatternLayoutPath(properties.getProperty("jmblogview.log4jPath"));
+	        tempExtension = properties.getProperty("jmblogview.extensions");
 	        if (tempExtension != null && tempExtension.length()>0)
 	        {
 	        		tempArrayExtension = tempExtension.split(",");
@@ -88,7 +88,7 @@ public class Configuration {
 	        				this.addFileExtension(tempArrayExtension[count]);
 	        			}
 	        		}
-	        		tempExtension = properties.getProperty("easy2c.extensionsEmpty");
+	        		tempExtension = properties.getProperty("jmblogview.extensionsEmpty");
 	        		if(tempExtension != null)
 	        		{
 	        			if(tempExtension.toLowerCase().equals("yes"))
