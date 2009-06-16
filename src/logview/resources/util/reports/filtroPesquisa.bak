@@ -44,13 +44,13 @@
 			</band>
 		</background>
 		<title>
-			<band height="134"  isSplitAllowed="true" >
+			<band height="91"  isSplitAllowed="true" >
 				<rectangle>
 					<reportElement
 						x="16"
 						y="24"
 						width="502"
-						height="104"
+						height="67"
 						key="rectangle-2"/>
 					<graphicElement stretchType="NoStretch"/>
 				</rectangle>
@@ -99,45 +99,6 @@
 						y="70"
 						width="53"
 						height="13"
-						key="staticText-7"/>
-					<box></box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Arquivo]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="41"
-						y="83"
-						width="53"
-						height="13"
-						key="staticText-8"/>
-					<box></box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Logger]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="41"
-						y="96"
-						width="53"
-						height="13"
-						key="staticText-5"/>
-					<box></box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Thread]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="41"
-						y="109"
-						width="53"
-						height="13"
 						key="staticText-9"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -175,7 +136,7 @@
 				<staticText>
 					<reportElement
 						x="165"
-						y="109"
+						y="70"
 						width="29"
 						height="13"
 						key="staticText-10"/>
@@ -188,19 +149,6 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="109"
-						y="70"
-						width="385"
-						height="13"
-						key="textField-1"/>
-					<box></box>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Tahoma" size="8"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$P{cArquivo}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="109"
 						y="44"
 						width="385"
 						height="13"
@@ -210,19 +158,6 @@
 						<font fontName="Tahoma" size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$P{cClasse}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="109"
-						y="83"
-						width="385"
-						height="13"
-						key="textField-3"/>
-					<box></box>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Tahoma" size="8"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$P{cLogger}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -240,7 +175,7 @@
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="109"
-						y="109"
+						y="70"
 						width="56"
 						height="13"
 						key="textField-5"/>
@@ -253,7 +188,7 @@
 				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="194"
-						y="109"
+						y="70"
 						width="56"
 						height="13"
 						key="textField-6"/>
@@ -262,19 +197,6 @@
 						<font fontName="Tahoma" size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.util.Date"><![CDATA[$P{cPeriodoFinal}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="109"
-						y="96"
-						width="385"
-						height="13"
-						key="textField-7"/>
-					<box></box>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Tahoma" size="8"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$P{cThread}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
@@ -321,51 +243,88 @@
 						y="70"
 						width="7"
 						height="13"
-						key="staticText-15"/>
-					<box></box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="94"
-						y="83"
-						width="7"
-						height="13"
-						key="staticText-16"/>
-					<box></box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="94"
-						y="96"
-						width="7"
-						height="13"
-						key="staticText-17"/>
-					<box></box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
-					</textElement>
-				<text><![CDATA[:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="94"
-						y="109"
-						width="7"
-						height="13"
 						key="staticText-18"/>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
 				<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="109"
+						y="31"
+						width="28"
+						height="13"
+						key="staticText-19">
+							<printWhenExpression><![CDATA[
+$P{cNivelError}]]></printWhenExpression>
+						</reportElement>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Error]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="137"
+						y="31"
+						width="52"
+						height="13"
+						key="staticText-20">
+							<printWhenExpression><![CDATA[$P{cNivelWarning}]]></printWhenExpression>
+						</reportElement>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Warning]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="189"
+						y="31"
+						width="22"
+						height="13"
+						key="staticText-21">
+							<printWhenExpression><![CDATA[new Boolean($P{cNivelFine})]]></printWhenExpression>
+						</reportElement>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Fine]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="211"
+						y="31"
+						width="26"
+						height="13"
+						key="staticText-22">
+							<printWhenExpression><![CDATA[new Boolean($P{cNivelInfo})]]></printWhenExpression>
+						</reportElement>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Info]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="237"
+						y="31"
+						width="30"
+						height="13"
+						key="staticText-23">
+							<printWhenExpression><![CDATA[new Boolean($P{cNivelDebug})]]></printWhenExpression>
+						</reportElement>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Debug]]></text>
 				</staticText>
 			</band>
 		</title>
@@ -383,7 +342,7 @@
 					<textElement>
 						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="14" isBold="true"/>
 					</textElement>
-				<text><![CDATA[LogView]]></text>
+				<text><![CDATA[JMB LogView]]></text>
 				</staticText>
 				<line direction="TopDown">
 					<reportElement
