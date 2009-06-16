@@ -17,7 +17,7 @@
  * Fundação do Software Livre(FSF) Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA  02110-1301, USA.
  */
-package logview.java.view.holders;
+package logview.java.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

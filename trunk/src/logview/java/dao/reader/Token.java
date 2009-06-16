@@ -22,8 +22,8 @@
  */
 package logview.java.dao.reader;
 
-import logview.java.view.holders.Evento;
-import logview.java.view.holders.Evento.EVENTO;
+import logview.java.entity.Evento;
+import logview.java.entity.Evento.EVENTO;
 
 /**
  * @author junioma

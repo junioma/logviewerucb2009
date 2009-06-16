@@ -8,7 +8,7 @@
 <af:showDetailItem text="Relatório" immediate="true"
 	inlineStyle="font-size: 8pt">
 	<h:panelGrid>
-		<af:objectImage source="#{relatorioGrafico.caminhoGrafico}" rendered="#{relatorioGrafico.caminhoGrafico != null}"/>
+		<af:objectImage source="#{relatorioGrafico.caminhoGrafico}" rendered="#{relatorioGrafico.caminhoGrafico != null && logview.eventos != null}}"/>
 		<af:commandButton text="Gerar gráfico"
 			actionListener="#{relatorioGrafico.gerarGraficoEventos}" />
 		<af:commandButton text="Gerar PDF" action="#{relatorioPDF.visualizarPDF}" />	

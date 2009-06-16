@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import logview.java.view.holders.Evento;
+import logview.java.entity.Evento;
 import logview.java.view.holders.FiltroPesquisa;
 
 

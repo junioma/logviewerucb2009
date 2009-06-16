@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import logview.java.entity.Evento;
 import logview.resources.util.constraints.Constantes;
 
 public class FiltroPesquisa {
