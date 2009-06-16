@@ -25,8 +25,8 @@ import java.util.List;
 import javax.faces.event.ActionEvent;
 
 import logview.java.dao.control.ControlFilter;
+import logview.java.entity.Evento;
 import logview.java.view.LogView;
-import logview.java.view.holders.Evento;
 import logview.java.view.holders.FiltroPesquisa;
 
 

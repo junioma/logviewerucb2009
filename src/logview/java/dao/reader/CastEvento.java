@@ -22,7 +22,7 @@ package logview.java.dao.reader;
 import java.util.ArrayList;
 import java.util.List;
 
-import logview.java.view.holders.Evento;
+import logview.java.entity.Evento;
 
 public class CastEvento {
 	private CastEvento(){}

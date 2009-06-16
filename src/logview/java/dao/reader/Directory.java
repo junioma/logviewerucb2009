@@ -23,7 +23,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import logview.java.entity.Configuration;
+import logview.java.service.Configuration;
+
 
 /**Class to represent a list of files inside a directory.
 

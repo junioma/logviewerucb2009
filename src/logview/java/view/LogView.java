@@ -26,7 +26,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logview.java.view.holders.Evento;
+import logview.java.entity.Evento;
 import logview.java.view.holders.FiltroPesquisa;
 import logview.resources.util.constraints.Constantes;
 

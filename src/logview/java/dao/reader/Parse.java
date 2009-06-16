@@ -22,8 +22,9 @@ package logview.java.dao.reader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import logview.java.view.holders.Evento;
-import logview.java.view.holders.Evento.EVENTO;
+
+import logview.java.entity.Evento;
+import logview.java.entity.Evento.EVENTO;
 import logview.resources.util.constraints.Constantes;
 
 /**Class to represent a the format of parse from log4j PatternLayout .

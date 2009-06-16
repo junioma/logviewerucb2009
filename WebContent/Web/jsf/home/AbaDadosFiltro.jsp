@@ -93,7 +93,7 @@
 	</af:panelHeader>
 	<af:panelHeader text="Resultados">	
 		<af:table partialTriggers="aplicarFiltro" width="100%"
-			value="#{home.listaEventos}" var="evento" rows="10">
+			value="#{home.listaEventos}" var="evento" rows="10" emptyText="Nenhum resultado encontrado.">
 			<af:column headerText="ID" sortable="true" sortProperty="id">
 				<af:outputText value="#{evento.id}" />
 			</af:column>

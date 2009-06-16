@@ -26,8 +26,8 @@ import java.util.List;
 import logview.java.dao.reader.Directory;
 import logview.java.dao.reader.Parse;
 import logview.java.dao.reader.SequencialReader;
-import logview.java.entity.Configuration;
-import logview.java.view.holders.Evento;
+import logview.java.entity.Evento;
+import logview.java.service.Configuration;
 import logview.java.view.holders.FiltroPesquisa;
 import logview.resources.util.constraints.Constantes;
 

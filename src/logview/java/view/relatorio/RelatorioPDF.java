@@ -28,8 +28,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import logview.java.entity.Evento;
 import logview.java.view.LogView;
-import logview.java.view.holders.Evento;
 import logview.java.view.holders.FiltroPesquisa;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;

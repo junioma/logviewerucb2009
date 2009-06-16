@@ -24,8 +24,8 @@ import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
+import logview.java.entity.Evento;
 import logview.java.view.LogView;
-import logview.java.view.holders.Evento;
 import logview.resources.util.chart.Grafico;
 import logview.resources.util.chart.GraficoUtil;
 import logview.resources.util.chart.ItemGrafico;

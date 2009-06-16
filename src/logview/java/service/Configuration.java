@@ -21,7 +21,7 @@
 /**
  * 
  */
-package logview.java.entity;
+package logview.java.service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
