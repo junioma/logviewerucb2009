@@ -130,7 +130,6 @@ public class Parse {
 	 * @param  tempEvent  The object that will receive the parse of a event	
 	 * @return Boolean	Return if the value is a valid value.	
 	 */
-	//TODO: Implementar a validação com base na pilha 
 	public Boolean validateLineOfEvent(String eventString,int numberOfLineInEvent,Evento tempEvent)
 	{
 		int intervaloInicio = 0;
@@ -157,6 +156,7 @@ public class Parse {
 			//
 			if(tokenTemp.getTokenType() == EVENTO.LINEFEED)
 			{
+				isMatching = true;
 				break;
 			}
 			//se for uma msg pega a posição na pilha e sai para que a leitura tenha a ordem invetida
@@ -164,6 +164,7 @@ public class Parse {
 			{
 				posicaoDaMascaraMensagemNaPilha=counter;
 				posicaoDoInicioDaMensagemNaString=posicaoAtualNaString;
+				isMatching = true;
 				break;
 			}
 			else {
@@ -633,7 +634,7 @@ public class Parse {
 							tokenStack.add(new Token(EVENTO.PADDING,paddingTemp,false));
 					}
 					else {
-						if(!(fullParseConversionString.charAt(counter+1)=='n') )
+						if( ( fullParseConversionString.charAt(counter+1)!='n' && tokenStack.get(tokenStack.size()-1).getTokenType()!=EVENTO.LINEFEED))
 						{
 							retorno = false;
 							break;
@@ -650,6 +651,24 @@ public class Parse {
 				counter = afterLastKnownMask;
 				afterLastKnownMask++;
 			}
+		}
+		//remove duplicated linefeed
+		if(retorno)
+		{	
+			//remove linefeed at begin
+			while(tokenStack.size()>0)
+			{
+				if(tokenStack.get(0).getTokenType()==EVENTO.LINEFEED)
+				{
+					tokenStack.remove(0);
+					numberOfLineFeed--;
+				}
+				else
+				{
+					break;
+				}
+			}
+			
 		}
 		return retorno;
 	}
