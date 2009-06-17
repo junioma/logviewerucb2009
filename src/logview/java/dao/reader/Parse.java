@@ -110,7 +110,6 @@ public class Parse {
 		}
 		tokenStack = new ArrayList<Token>();
 		parsingEvent = new Evento();
-		//TODO
 		numberOfLineFeed = 0;
 	}
 
@@ -226,7 +225,6 @@ public class Parse {
 					//se o padding é igual a substring dos proximos caracteres que vem apartir da posicaoAtualNaString
 					int caractereFinalPadding = tokenTemp.getTokenValue().length()-1;
 					String subStringTest = eventString.substring(posicaoAtualNaString,posicaoAtualNaString+caractereFinalPadding +1 );
-					//TODO deletar essew linha abaixo
 					if(tokenTemp.getTokenValue().equals(subStringTest))
 					{
 						posicaoAtualNaString += caractereFinalPadding +1 ;
@@ -257,7 +255,7 @@ public class Parse {
 						return false;
 					}
 					String subStringTest = eventString.substring(posicaoAtualNaString - tamanhoValorPadding,posicaoAtualNaString);
-					//TODO deletar essew linha abaixo
+
 					if(tokenTemp.getTokenValue().equals(subStringTest))
 					{
 						posicaoAtualNaString -= tamanhoValorPadding ;
@@ -317,8 +315,7 @@ public class Parse {
 			
 			if(directionOfRead == DIRECTION.RIGHT)
 			{	
-				//TODO erro
-				//Erro!
+
 				if(posicaoAtualNaString + sizeOfDateValue<=eventString.length())
 				{
 					dateTempToMatch = eventString.substring(posicaoAtualNaString, posicaoAtualNaString + sizeOfDateValue );
@@ -676,7 +673,6 @@ public class Parse {
 	
 	
 	private int checkPercent(int percentPosition) {
-		// TODO Auto-generated method stub
 		int retorno = 0;
 		switch(fullParseConversionString.charAt(percentPosition+1))
 		{
@@ -828,7 +824,6 @@ public class Parse {
 		return retorno;
 	}
 	private OPTIONS_RETURN_TYPES validateOptions(int firstPosition, char typeOfOption) {
-		// TODO Auto-generated method stub
 		OPTIONS_RETURN_TYPES retorno = OPTIONS_RETURN_TYPES.INVALID;
 		int lastPosition = fullParseConversionString.indexOf('}', firstPosition);
 		if(lastPosition>firstPosition)

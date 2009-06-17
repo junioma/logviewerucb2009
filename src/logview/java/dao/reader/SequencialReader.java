@@ -49,7 +49,7 @@ public class SequencialReader {
 	 * @param  arrayListDeEventos	This parameter will receive all lines reads from files.
 	 * @return void
 	 */
-	//TODO Mudar para usando o readEventsCheckingByFilter passando o valor máximo e valor minimo
+
 	public static int readEventsAll(ArrayList<File> arrayListDoDiretorio,ArrayList<String> arrayListDeEventos,Parse parse,int begin,int end) throws IOException{
 		return 0;
 	}
@@ -78,7 +78,7 @@ public class SequencialReader {
 			BufferedReader buffer = new BufferedReader(arquivo);
 			while((eventoStringTemp=buffer.readLine())!=null && counterOfEvents<=end)
 			{
-				//TODO Terminar classes envolvidas ness processo
+
 				if(parse.validateLineOfEvent(eventoStringTemp,numberOfLineInEvent,tempEvent))//an event have got many lines
                 {
 					if(numberOfLineInEvent>=numberMaxOfLineFeed)// Se o numero necessários de linhas já foi lido e aprovado
@@ -110,7 +110,7 @@ public class SequencialReader {
 		}//end for
 
 	}
-	//TODO Mudar isso pois é utilizado para a paginação
+
 	public static int countEventsByParse(ArrayList<File> arrayListDoDiretorio,Parse parse,FiltroPesquisa filtro) throws IOException 
 	{
 		int counterOfEvents = 0;
@@ -125,7 +125,7 @@ public class SequencialReader {
 			BufferedReader buffer = new BufferedReader(arquivo);
 			while((eventoStringTemp=buffer.readLine())!=null)
 			{
-				//TODO Terminar classes envolvidas ness processo
+
 				if(parse.validateLineOfEvent(eventoStringTemp,numberOfLineInEvent,tempEvent))//an event have got many lines
                 {
 					if(numberOfLineInEvent>=numberMaxOfLineFeed)// Se o numero necessários de linhas já foi lido e aprovado

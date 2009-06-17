@@ -181,7 +181,7 @@ public class Configuration {
 		}
 		return uniqueInstance;
 	}
-	// TODO Rever a leitura de ,properties
+
 	public String getlog4JPatternLayout() {
 	    InputStream is;   
 	    String result="";
