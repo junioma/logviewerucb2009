@@ -252,6 +252,19 @@ public class FiltroPesquisa {
 			}
 		}
 		
+		if(adicionar){
+			if(evento.getDataHora() != null && this.getPeriodoInicial() !=null && this.getPeriodoFinal() != null ){
+				Date dataTemp = evento.getDataHora();
+				if(dataTemp.compareTo(this.periodoInicial)>=0 && dataTemp.compareTo(this.periodoFinal)<=0)
+				{
+					adicionar = true;
+				}
+				else
+				{
+					adicionar = false;
+				}
+			}
+		}
 		
 		return adicionar;
 	}
