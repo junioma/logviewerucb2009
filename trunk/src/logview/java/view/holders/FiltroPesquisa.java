@@ -154,7 +154,6 @@ public class FiltroPesquisa {
 	/**
 	 * 
 	 */
-	//TODO Adicionar filtro por data
 	
 	public boolean atendeFiltroPesquisa(Evento evento){
 		boolean adicionar = true;

@@ -107,7 +107,7 @@ public class Directory {
             } 
             else
             {
-            	//TODO testar melhor extenção do arquivo
+
             	//verifica extenção do arquivo
             	int point = f.getName().lastIndexOf(".");
             	if(point>0&&point!=(f.getName().length()-1))
