@@ -255,6 +255,14 @@ public class FiltroPesquisa {
 		if(adicionar){
 			if(evento.getDataHora() != null && this.getPeriodoInicial() !=null && this.getPeriodoFinal() != null ){
 				Date dataTemp = evento.getDataHora();
+				int hour,minute,second;
+				hour = minute = second =0;
+				hour = dataTemp.getHours();
+				minute = dataTemp.getMinutes();
+				second = dataTemp.getSeconds();
+				dataTemp.setHours(0);
+				dataTemp.setMinutes(0);
+				dataTemp.setSeconds(0);
 				if(dataTemp.compareTo(this.periodoInicial)>=0 && dataTemp.compareTo(this.periodoFinal)<=0)
 				{
 					adicionar = true;
@@ -263,6 +271,9 @@ public class FiltroPesquisa {
 				{
 					adicionar = false;
 				}
+				dataTemp.setHours(hour);
+				dataTemp.setMinutes(minute);
+				dataTemp.setSeconds(second);
 			}
 		}
 		
