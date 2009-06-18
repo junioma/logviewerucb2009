@@ -64,7 +64,7 @@ public class ControlFilter {
 		}
         System.out.println("====\n     Hosted at: Google Code\n     Quantidade total de regitros:"+SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse, filtro)+"\n====\n");
         /*Le os dados dos dirétorios informados, guardando os evento em uma lista de evento, com base em um parse, filtrando, sendo que traz os registros de x até y */
-        SequencialReader.readEventsCheckingByFilter(diretorio.getDirectoryFiles(), listEventos, parse, filtro, 1, 50);
+        SequencialReader.readEventsCheckingByFilter(diretorio.getDirectoryFiles(), listEventos, parse, filtro, 1, SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse, filtro));
 		return listEventos;
 	}
 	
