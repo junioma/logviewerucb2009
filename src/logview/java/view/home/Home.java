@@ -20,6 +20,7 @@
 package logview.java.view.home;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
@@ -37,6 +38,12 @@ public class Home extends LogView{
 
 	public Home() {
 		
+	}
+	
+	public String limpar(){
+		setEventos(new ArrayList<Evento>());
+		setFiltroPesquisa(new FiltroPesquisa());
+		return "";
 	}
 	
 	public void actionFiltrar(ActionEvent evento) throws IOException{
