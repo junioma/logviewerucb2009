@@ -12,7 +12,7 @@
 		<h:panelGrid columns="2">
 				<af:outputLabel value="NÍVEL" />
 				<af:selectManyCheckbox layout="horizontal"
-					value="#{home.filtro.niveis}">
+					value="#{home.filtro.niveis}" shortDesc="Informar os níveis da ocorrências. Esses níveis podem ser combinados.">
 					<f:selectItem itemValue="5" itemLabel="Error" />
 					<f:selectItem itemValue="4" itemLabel="Warning" />
 					<f:selectItem itemValue="3" itemLabel="Fine" />
@@ -24,16 +24,16 @@
 				<af:outputLabel value="CLASSE" />
 				<af:panelGroup layout="horizontal">
 					<af:inputText columns="30" maximumLength="100"
-						value="#{home.filtro.classe}" />
-					<af:selectBooleanCheckbox value="#{home.filtro.caseClasse}" />
+						value="#{home.filtro.classe}" shortDesc="Informar o nome da classe a ser pesquisada."/>
+					<af:selectBooleanCheckbox value="#{home.filtro.caseClasse}" shortDesc="Diferenciar maiúsculo / minúsculo."/>
 					<af:outputLabel value="Case sensitive" />
 				</af:panelGroup>
 	
 				<af:outputLabel value="MENSAGEM" />
 				<af:panelGroup layout="horizontal">
 					<af:inputText columns="30" maximumLength="100"
-						value="#{home.filtro.mensagem}" />
-					<af:selectBooleanCheckbox value="#{home.filtro.caseMensagem}" />
+						value="#{home.filtro.mensagem}" shortDesc="Informar o conteúdo da mensagem a ser pesquisada."/>
+					<af:selectBooleanCheckbox value="#{home.filtro.caseMensagem}" shortDesc="Diferenciar maiúsculo / minúsculo"/>
 					<af:outputLabel value="Case sensitive" />
 				</af:panelGroup>
 	
@@ -63,18 +63,18 @@
 	
 				<af:outputLabel value="PERÍODO" />
 				<af:panelGroup layout="horizontal">
-					<af:selectInputDate value="#{home.filtro.periodoInicial}" />
+					<af:selectInputDate value="#{home.filtro.periodoInicial}" shortDesc="Informar a data inicial do período da ocorrência."/>
 					<af:outputLabel value=" até " />
-					<af:selectInputDate value="#{home.filtro.periodoFinal}" />
+					<af:selectInputDate value="#{home.filtro.periodoFinal}" shortDesc="Informar a data final do período da ocorrência."/>
 				</af:panelGroup>
 			
 		</h:panelGrid>
 	</af:panelHeader>
 	<af:panelButtonBar inlineStyle="text-align: center">
 		<af:commandButton id="aplicarFiltro"
-			actionListener="#{home.actionFiltrar}" text="Aplicar"
+			actionListener="#{home.actionFiltrar}" text="Aplicar" shortDesc="Aplicar os filtros a pesquisa de ocorrências."
 			partialSubmit="false" />
-		<af:commandButton textAndAccessKey="Limpar" action="#{home.limpar}" />		
+		<af:commandButton textAndAccessKey="Limpar" action="#{home.limpar}" shortDesc="Limpar os filtros e resultados de pesquisa."/>		
 	</af:panelButtonBar>
 	<af:objectSeparator />
 	<af:panelHeader text="Legenda de níveis" inlineStyle="width: 100%">
@@ -108,7 +108,7 @@
 				<af:outputText value="#{evento.id}" />
 			</af:column>
 			<af:column headerText="Nível" sortable="true" sortProperty="nivel">
-				<af:objectImage source="#{evento.imagemNivel}" />
+				<af:objectImage source="#{evento.imagemNivel}" shortDesc="#{evento.descricaoNivel}"/>
 			</af:column>
 			<%--af:column headerText="Nível" sortable="true" sortProperty="nivel">
 				<af:outputText value="ERROR"
