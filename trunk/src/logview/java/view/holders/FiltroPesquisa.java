@@ -40,7 +40,7 @@ public class FiltroPesquisa {
 	public boolean caseThread;
 	public boolean caseLogger;
 	public boolean caseArquivo;
-	
+
 	public boolean isCaseMensagem() {
 		return caseMensagem;
 	}
@@ -119,11 +119,11 @@ public class FiltroPesquisa {
 	public void setCaseArquivo(boolean caseArquivo) {
 		this.caseArquivo = caseArquivo;
 	}
-	
+
 	public boolean isFiltroNivelError(){
 		return verificarExisteNivel(Constantes.NIVEL_ERROR);
 	}
-	
+
 	public boolean isFiltroNivelWarning(){
 		return verificarExisteNivel(Constantes.NIVEL_WARNING);
 	}
@@ -136,7 +136,7 @@ public class FiltroPesquisa {
 	public boolean isFiltroNivelDebug(){
 		return verificarExisteNivel(Constantes.NIVEL_DEBUG);
 	}
-	
+
 	/**
 	 * @param i
 	 * @return
@@ -150,132 +150,95 @@ public class FiltroPesquisa {
 		}
 		return listaNiveis.contains(i);
 	}
-	
+
 	/**
 	 * 
 	 */
-	
+
 	public boolean atendeFiltroPesquisa(Evento evento){
-		boolean adicionar = true;
-		if(adicionar){
-			if(this.getNiveis() != null){
-				for(Integer nivel : this.getNiveis()){
-					if(nivel.intValue() == evento.getNivel()){
-						adicionar = true;
-						break;
-					}
-					else{
-						adicionar = false;
-					}
-				}
+		return (isAtendeFiltroNivel(evento.getNivel()) 
+				&& isAtendeFiltroClasse(evento.getClasse()) 
+				&& isAtendeFiltroMensagem(evento.getMensagem())
+				&& isAtendeFiltroPeriodo(evento.getDataHora()));		
+	}
+	/**
+	 * @param mensagem2
+	 * @return
+	 */
+	private boolean isAtendeFiltroClasse(String classe) {
+		return isAtendeFiltroTexto(classe,this.caseClasse,this.getClasse());
+	}
+	
+	private boolean isAtendeFiltroMensagem(String mensagem) {
+		return isAtendeFiltroTexto(mensagem,this.caseMensagem,this.getMensagem());
+	}
+	/**
+	 * @param mensagem2
+	 * @return
+	 */
+	private boolean isAtendeFiltroTexto(String mensagem,boolean caseSensitive,String comparador) {
+		if(comparador == null || comparador.equals("")){
+			return true;
+		}
+		else{
+			if(mensagem == null)
+				return false;
+			String msgPesquisa = mensagem;
+			String msgFiltro = comparador;
+			if(!caseSensitive){
+				msgPesquisa = msgPesquisa.toUpperCase();
+				msgFiltro = msgFiltro.toUpperCase();
+			}
+			if(msgPesquisa.indexOf(msgFiltro) == -1)
+				return false;
+		}		
+		return true;
+	}
+	/**
+	 * @param dataHora
+	 * @return
+	 */
+	private boolean isAtendeFiltroPeriodo(Date dataEvento) {
+		Date dataInicial = this.getPeriodoInicial();
+		Date dataFinal = this.getPeriodoFinal();
+
+		//Validates verification		
+		if((dataInicial == null)&&(dataFinal == null))
+			return true;
+
+		if(((dataInicial != null) || (dataFinal != null)) && dataEvento == null)
+			return false;
+
+		//Interval verification
+		if(dataInicial != null && dataFinal != null){
+			return ((dataEvento.equals(dataInicial) || dataEvento.after(dataInicial)) && (dataEvento.equals(dataFinal) || dataEvento.before(dataFinal))); 
+		}
+
+		if(dataInicial != null && dataFinal == null){
+			return ((dataEvento.equals(dataInicial) || dataEvento.after(dataInicial))); 
+		}
+
+		if(dataInicial == null && dataFinal != null){
+			return ((dataEvento.equals(dataFinal) || dataEvento.before(dataFinal))); 
+		}
+		return true;
+
+	}
+
+	private boolean isAtendeFiltroNivel(int nivel) {		
+		if(this.getNiveis() == null || (this.getNiveis().length == 0)){
+			return true;
+		}
+		if(this.getNiveis() != null && (this.getNiveis().length > 0) && nivel == 0){
+			return false;
+		}
+
+		Integer[] niveis = this.getNiveis();
+		for(int i = 0; i<niveis.length; i++){			
+			if(niveis[i].intValue() == nivel){
+				return true;
 			}
 		}
-		
-		if(adicionar){
-			if(evento.getMensagem() != null && this.getMensagem() != null && !this.getMensagem().trim().equals("")){
-				String mensagemEvento = evento.getMensagem();
-				String mensagemFiltro = this.getMensagem();
-				if(!this.isCaseMensagem()){
-					mensagemEvento = mensagemEvento.toUpperCase();
-					mensagemFiltro = mensagemFiltro.toUpperCase();
-				}
-				if(mensagemEvento.indexOf(mensagemFiltro) == -1)
-					adicionar = false;
-				else
-					adicionar = true;
-				
-			}
-		}
-		
-		if(adicionar){
-			if(evento.getClasse() != null && this.getClasse() != null && !this.getClasse().trim().equals("")){
-				String classeEvento = evento.getClasse();
-				String classeFiltro = this.getClasse();
-				if(!this.isCaseClasse()){
-					classeEvento = classeEvento.toUpperCase();
-					classeFiltro = classeFiltro.toUpperCase();
-				}
-				if(classeEvento.indexOf(classeFiltro) == -1)
-					adicionar = false;
-				else
-					adicionar = true;
-				
-			}
-		}
-		
-		if(adicionar){
-			if(evento.getArquivo() != null && this.getArquivo() != null && !this.getArquivo().trim().equals("")){
-				String arquivoEvento = evento.getArquivo();
-				String arquivoFiltro = this.getArquivo();
-				if(!this.isCaseArquivo()){
-					arquivoEvento = arquivoEvento.toUpperCase();
-					arquivoFiltro = arquivoFiltro.toUpperCase();
-				}
-				if(arquivoEvento.indexOf(arquivoFiltro) == -1)
-					adicionar = false;
-				else
-					adicionar = true;
-				
-			}
-		}
-		
-		if(adicionar){
-			if(evento.getThread() != null && this.getThread() != null && !this.getThread().trim().equals("")){
-				String threadEvento = evento.getThread();
-				String threadFiltro = this.getThread();
-				if(!this.isCaseThread()){
-					threadEvento = threadEvento.toUpperCase();
-					threadFiltro = threadFiltro.toUpperCase();
-				}
-				if(threadEvento.indexOf(threadFiltro) == -1)
-					adicionar = false;
-				else
-					adicionar = true;
-				
-			}
-		}
-		
-		if(adicionar){
-			if(evento.getLogger() != null && this.getLogger() != null && !this.getLogger().trim().equals("")){
-				String loggerEvento = evento.getLogger();
-				String loggerFiltro = this.getLogger();
-				if(!this.isCaseLogger()){
-					loggerEvento = loggerEvento.toUpperCase();
-					loggerFiltro = loggerFiltro.toUpperCase();
-				}
-				if(loggerEvento.indexOf(loggerFiltro) == -1)
-					adicionar = false;
-				else
-					adicionar = true;
-				
-			}
-		}
-		
-		if(adicionar){
-			if(evento.getDataHora() != null && this.getPeriodoInicial() !=null && this.getPeriodoFinal() != null ){
-				Date dataTemp = evento.getDataHora();
-				int hour,minute,second;
-				hour = minute = second =0;
-				hour = dataTemp.getHours();
-				minute = dataTemp.getMinutes();
-				second = dataTemp.getSeconds();
-				dataTemp.setHours(0);
-				dataTemp.setMinutes(0);
-				dataTemp.setSeconds(0);
-				if(dataTemp.compareTo(this.periodoInicial)>=0 && dataTemp.compareTo(this.periodoFinal)<=0)
-				{
-					adicionar = true;
-				}
-				else
-				{
-					adicionar = false;
-				}
-				dataTemp.setHours(hour);
-				dataTemp.setMinutes(minute);
-				dataTemp.setSeconds(second);
-			}
-		}
-		
-		return adicionar;
+		return false;
 	}
 }

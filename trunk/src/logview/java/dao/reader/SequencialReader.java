@@ -67,11 +67,12 @@ public class SequencialReader {
 	 * @param  end	This parameter will be used to control the user pagination.
 	 * @return void
 	 */
-	public static void readEventsCheckingByFilter(ArrayList<File> arrayListDoDiretorio,List<Evento> arrayListDeEventos,Parse parse,FiltroPesquisa filtro, int begin,int end) throws IOException{
+	public static List<Evento> readEventsCheckingByFilter(ArrayList<File> arrayListDoDiretorio, Parse parse,FiltroPesquisa filtro, int begin,int end) throws IOException{
 		String eventoStringTemp="";
 		int numberMaxOfLineFeed = parse.getNumberOfLineFeed();
 		int numberOfLineInEvent = 1;
 		Evento tempEvent = new Evento() ;
+		List<Evento> arrayListDeEventos = new ArrayList<Evento>();
 		
 		for(int counter =0,counterOfEvents=1 ; counter <arrayListDoDiretorio.size()&&counterOfEvents<=end;counter++ ){
 			FileReader arquivo = new FileReader(arrayListDoDiretorio.get(counter));
@@ -90,8 +91,9 @@ public class SequencialReader {
 		                	{
 		                		tempEvent.setId(new Long(counterOfEvents));
 		                		arrayListDeEventos.add(tempEvent);
+		                		counterOfEvents++;	      
 		                	}
-		                	counterOfEvents++;	               
+		                	         
 						}
 						tempEvent = new Evento();
 					}
@@ -110,7 +112,8 @@ public class SequencialReader {
 			}//end while
 			arquivo.close();
 		}//end for
-
+		
+		return arrayListDeEventos;
 	}
 
 	public static int countEventsByParse(ArrayList<File> arrayListDoDiretorio,Parse parse,FiltroPesquisa filtro) throws IOException 
