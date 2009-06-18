@@ -89,7 +89,7 @@ public class RelatorioGrafico extends LogView {
 		Grafico grafico = new Grafico("", "Nível", "Qtd. Ocorrência", 
 				itensGrafico, GRAFICO_LARGURA, GRAFICO_ALTURA, itensGrafico.size(), 
 				"nome.arquivo.relatorio.barras", getHttpServletRequest().getSession().getId());
-		return GraficoUtil.gerarGraficoBarraVerticalJPEG(grafico,getHttpServletRequest().getRealPath("."));
+		return GraficoUtil.gerarGraficoBarraVerticalJPEG(grafico,getHttpServletRequest().getRealPath(""));
 	}
 	
 	public String getCaminhoGrafico() {
