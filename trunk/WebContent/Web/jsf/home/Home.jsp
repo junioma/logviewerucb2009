@@ -8,7 +8,7 @@
 	<af:document title="LogView">
 		<af:form>
 			<af:page title="LogView">
-				<af:showOneTab id="principal" position="above" shortDesc="Escolher operação">
+				<af:showOneTab id="principal" position="above">
 					<jsp:include page="AbaDadosFiltro.jsp" flush="true" />
 					<jsp:include page="AbaDadosRelatorio.jsp" flush="true" />
 				</af:showOneTab>				
