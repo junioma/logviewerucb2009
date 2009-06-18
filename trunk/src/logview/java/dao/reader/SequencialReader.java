@@ -67,17 +67,16 @@ public class SequencialReader {
 	 * @param  end	This parameter will be used to control the user pagination.
 	 * @return void
 	 */
-	public static List<Evento> readEventsCheckingByFilter(ArrayList<File> arrayListDoDiretorio, Parse parse,FiltroPesquisa filtro, int begin,int end) throws IOException{
+	public static void readEventsCheckingByFilter(ArrayList<File> arrayListDoDiretorio,List<Evento> arrayListDeEventos,Parse parse,FiltroPesquisa filtro, int begin,int end) throws IOException{
 		String eventoStringTemp="";
 		int numberMaxOfLineFeed = parse.getNumberOfLineFeed();
 		int numberOfLineInEvent = 1;
 		Evento tempEvent = new Evento() ;
-		List<Evento> arrayListDeEventos = new ArrayList<Evento>();
 		
-		for(int counter =0,counterOfEvents=1 ; counter <arrayListDoDiretorio.size()&&counterOfEvents<=end;counter++ ){
+		for(int counter =0,counterOfTotalEvents=0 , counterOfValidEvents = 0 ; counter <arrayListDoDiretorio.size()&&counterOfTotalEvents<=end;counter++ ){
 			FileReader arquivo = new FileReader(arrayListDoDiretorio.get(counter));
 			BufferedReader buffer = new BufferedReader(arquivo);
-			while((eventoStringTemp=buffer.readLine())!=null && counterOfEvents<=end)
+			while((eventoStringTemp=buffer.readLine())!=null && counterOfTotalEvents<=end)
 			{
 
 				if(parse.validateLineOfEvent(eventoStringTemp,numberOfLineInEvent,tempEvent))//an event have got many lines
@@ -86,14 +85,13 @@ public class SequencialReader {
 					{
 						if(tempEvent != null)//Se o evento lido é válido
 						{
-
-		                	if(counterOfEvents>=begin && filtro.atendeFiltroPesquisa(tempEvent))
+		                	counterOfTotalEvents++;	               
+		                	if(counterOfTotalEvents>=begin && filtro.atendeFiltroPesquisa(tempEvent))
 		                	{
-		                		tempEvent.setId(new Long(counterOfEvents));
+		                		counterOfValidEvents++;
+		                		tempEvent.setId(new Long(counterOfValidEvents));
 		                		arrayListDeEventos.add(tempEvent);
-		                		counterOfEvents++;	      
 		                	}
-		                	         
 						}
 						tempEvent = new Evento();
 					}
@@ -112,8 +110,7 @@ public class SequencialReader {
 			}//end while
 			arquivo.close();
 		}//end for
-		
-		return arrayListDeEventos;
+
 	}
 
 	public static int countEventsByParse(ArrayList<File> arrayListDoDiretorio,Parse parse,FiltroPesquisa filtro) throws IOException 

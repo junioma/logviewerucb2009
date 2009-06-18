@@ -20,6 +20,7 @@
 package logview.java.dao.control;
  
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import logview.java.dao.reader.Directory;
@@ -34,6 +35,7 @@ public class ControlFilter {
 	
 	public static final List<Evento> gerarListaEventos(FiltroPesquisa filtro) throws IOException{
 		//ArrayList que contem a lista de todos os Eventos lidos
+		List<Evento> listEventos = new ArrayList<Evento>();
 		/*Pega a instancia da classe de configuração*/
 		Configuration configuracao = Configuration.getInstance();
 		/*Le os dados de configuração do propertie de configuração da aplicação. msg de erro na interface precisa ser implementada*/
@@ -62,8 +64,8 @@ public class ControlFilter {
 		}
         System.out.println("====\n     Hosted at: Google Code\n     Quantidade total de regitros:"+SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse, filtro)+"\n====\n");
         /*Le os dados dos dirétorios informados, guardando os evento em uma lista de evento, com base em um parse, filtrando, sendo que traz os registros de x até y */
-        
-		return SequencialReader.readEventsCheckingByFilter(diretorio.getDirectoryFiles(), parse, filtro, 1, SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse, filtro));
+        SequencialReader.readEventsCheckingByFilter(diretorio.getDirectoryFiles(), listEventos, parse, filtro, 1, SequencialReader.countEventsByParse(diretorio.getDirectoryFiles(), parse, filtro));
+		return listEventos;
 	}
 	
 	public static final List<Evento> gerarListaEventosFiltrados(FiltroPesquisa filtro) throws IOException{
