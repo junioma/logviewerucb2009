@@ -100,4 +100,7 @@ public class RelatorioGrafico extends LogView {
 		this.caminhoGrafico = caminhoGrafico;
 	}
 
+	public List<Evento> getEventos(){
+		return super.getEventos();
+	}
 }
