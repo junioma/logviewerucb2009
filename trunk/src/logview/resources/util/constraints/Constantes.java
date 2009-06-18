@@ -39,6 +39,5 @@ public class Constantes {
 	public static String IMAGEM_DEBUG = CAMINHO_IMAGEM_NIVEL+"nivel-debug.gif";
 	
 	public static final String PATH_CONFIGURATION_PROPERTIES = "/configuration.properties";
-	
 
 }

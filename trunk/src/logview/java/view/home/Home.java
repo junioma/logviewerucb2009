@@ -19,6 +19,7 @@
  */
 package logview.java.view.home;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +27,11 @@ import java.util.List;
 import javax.faces.event.ActionEvent;
 
 import logview.java.dao.control.ControlFilter;
+import logview.java.dao.reader.Directory;
 import logview.java.entity.Evento;
 import logview.java.view.LogView;
 import logview.java.view.holders.FiltroPesquisa;
+import logview.resources.util.chart.GraficoUtil;
 
 
 @SuppressWarnings("unchecked")
@@ -47,10 +50,30 @@ public class Home extends LogView{
 	}
 	
 	public void actionFiltrar(ActionEvent evento) throws IOException{
+		limparGraficosTemporarios();
 		setListaEventos(ControlFilter.gerarListaEventosFiltrados(getFiltro()));
 	}
 	
 	
+	/**
+	 * 
+	 */
+	private void limparGraficosTemporarios() {
+		String path = getHttpServletRequest().getSession().getServletContext().getRealPath("."); 
+		String sessionId = getHttpServletRequest().getSession().getId();
+		File f = new File(path + GraficoUtil.DIRETORIO_TEMPORARIO + GraficoUtil.DIRETORIO_TEMPORARIO_USUARIOS + "/" + sessionId);
+		
+		if (f.exists()) {
+			// caso diretório exista, remove arquivos internos para depois
+			// remover diretorio
+			File[] files = f.listFiles();
+			for(int i=0; i<files.length; i++) {
+				files[i].delete();
+			}
+			f.delete();
+		}
+	}
+
 	public String getTotalEventos() {
 		if(getListaEventos() != null)
 			return listaEventos.size()+"";
