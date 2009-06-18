@@ -74,7 +74,7 @@
 		<af:commandButton id="aplicarFiltro"
 			actionListener="#{home.actionFiltrar}" text="Aplicar"
 			partialSubmit="false" />
-		<af:resetButton textAndAccessKey="Limpar"  />		
+		<af:commandButton textAndAccessKey="Limpar" action="#{home.limpar}" />		
 	</af:panelButtonBar>
 	<af:objectSeparator />
 	<af:panelHeader text="Legenda" inlineStyle="width: 100%">
