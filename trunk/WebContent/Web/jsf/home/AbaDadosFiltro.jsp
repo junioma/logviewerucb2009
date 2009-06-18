@@ -77,19 +77,29 @@
 		<af:commandButton textAndAccessKey="Limpar" action="#{home.limpar}" />		
 	</af:panelButtonBar>
 	<af:objectSeparator />
-	<af:panelHeader text="Legenda" inlineStyle="width: 100%">
-		<h:panelGrid columns="10">
-			<af:objectImage source="#{logview.IMG_ERROR}" />
-			<af:outputLabel value="Nível ERROR" />
-			<af:objectImage source="#{logview.IMG_WARNING}" />
-			<af:outputLabel value="Nível WARNING" />
-			<af:objectImage source="#{logview.IMG_FINE}" />
-			<af:outputLabel value="Nível FINE" />
-			<af:objectImage source="#{logview.IMG_INFO}" />
-			<af:outputLabel value="Nível INFO" />
-			<af:objectImage source="#{logview.IMG_DEBUG}" />
-			<af:outputLabel value="Nível DEBUG" />
-		</h:panelGrid>
+	<af:panelHeader text="Legenda de níveis" inlineStyle="width: 100%">
+			<h:panelGrid columns="5" width="40%">
+				<af:panelGroup>
+					<af:objectImage source="#{logview.IMG_ERROR}" />
+					<af:outputLabel value="ERROR" />
+				</af:panelGroup>
+				<af:panelGroup>
+					<af:objectImage source="#{logview.IMG_WARNING}" />
+					<af:outputLabel value="WARNING" />
+				</af:panelGroup>
+				<af:panelGroup>
+					<af:objectImage source="#{logview.IMG_FINE}" />
+					<af:outputLabel value="FINE" />
+				</af:panelGroup>
+				<af:panelGroup>
+					<af:objectImage source="#{logview.IMG_INFO}" />
+					<af:outputLabel value="INFO" />
+				</af:panelGroup>
+				<af:panelGroup>
+					<af:objectImage source="#{logview.IMG_DEBUG}" />
+					<af:outputLabel value="DEBUG" />
+				</af:panelGroup>
+			</h:panelGrid>
 	</af:panelHeader>
 	<af:panelHeader text="Resultados">	
 		<af:table partialTriggers="aplicarFiltro" width="100%"
