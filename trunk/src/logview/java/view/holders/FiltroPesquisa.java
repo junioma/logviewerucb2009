@@ -156,13 +156,16 @@ public class FiltroPesquisa {
 	 */
 	
 	public boolean atendeFiltroPesquisa(Evento evento){
-		boolean adicionar = false;
+		boolean adicionar = true;
 		if(adicionar){
 			if(this.getNiveis() != null){
 				for(Integer nivel : this.getNiveis()){
 					if(nivel.intValue() == evento.getNivel()){
 						adicionar = true;
 						break;
+					}
+					else{
+						adicionar = false;
 					}
 				}
 			}
