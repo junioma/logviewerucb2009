@@ -85,11 +85,13 @@ public class SequencialReader {
 					{
 						if(tempEvent != null)//Se o evento lido é válido
 						{
-		                	counterOfEvents++;	               
+
 		                	if(counterOfEvents>=begin && filtro.atendeFiltroPesquisa(tempEvent))
 		                	{
+		                		tempEvent.setId(new Long(counterOfEvents));
 		                		arrayListDeEventos.add(tempEvent);
 		                	}
+		                	counterOfEvents++;	               
 						}
 						tempEvent = new Evento();
 					}
