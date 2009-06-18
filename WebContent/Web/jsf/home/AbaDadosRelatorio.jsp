@@ -8,10 +8,11 @@
 <af:showDetailItem text="Relatório" immediate="true"
 	inlineStyle="font-size: 8pt">
 	<h:panelGrid>
-		<af:objectImage source="#{relatorioGrafico.caminhoGrafico}" rendered="#{relatorioGrafico.caminhoGrafico != null && relatorioGrafico.eventos != null}"/>
+		<af:objectImage source="#{relatorioGrafico.caminhoGrafico}" rendered="#{relatorioGrafico.caminhoGrafico != null && relatorioGrafico.eventos != null}" 
+		shortDesc="Gráfico quantitativo das ocorrências"/>
 		<af:commandButton text="Gerar gráfico"
-			actionListener="#{relatorioGrafico.gerarGraficoEventos}" />
-		<af:commandButton text="Gerar PDF" action="#{relatorioPDF.visualizarPDF}" />	
+			actionListener="#{relatorioGrafico.gerarGraficoEventos}" shortDesc="Gerar/Atualizar relatório gráfico quantitativo das ocorrências"/>
+		<af:commandButton text="Gerar PDF" action="#{relatorioPDF.visualizarPDF}" shortDesc="Gerar lista de ocorrências em um arquivo no formato PDF."/>	
 	</h:panelGrid>
 
 </af:showDetailItem>
