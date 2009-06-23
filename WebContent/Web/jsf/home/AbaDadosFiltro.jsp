@@ -13,9 +13,9 @@
 				<af:outputLabel value="NÍVEL" />
 				<af:selectManyCheckbox layout="horizontal"
 					value="#{home.filtro.niveis}" shortDesc="Informar os níveis da ocorrências. Esses níveis podem ser combinados.">
-					<f:selectItem itemValue="5" itemLabel="Error" />
-					<f:selectItem itemValue="4" itemLabel="Warning" />
-					<f:selectItem itemValue="3" itemLabel="Fine" />
+					<f:selectItem itemValue="5" itemLabel="Fatal" />
+					<f:selectItem itemValue="4" itemLabel="Error" />
+					<f:selectItem itemValue="3" itemLabel="Warning" />
 					<f:selectItem itemValue="2" itemLabel="Info" />
 					<f:selectItem itemValue="1" itemLabel="Debug" />
 				</af:selectManyCheckbox>
@@ -88,8 +88,8 @@
 					<af:outputLabel value="WARNING" />
 				</af:panelGroup>
 				<af:panelGroup>
-					<af:objectImage source="#{logview.IMG_FINE}" />
-					<af:outputLabel value="FINE" />
+					<af:objectImage source="#{logview.IMG_FATAL}" />
+					<af:outputLabel value="FATAL" />
 				</af:panelGroup>
 				<af:panelGroup>
 					<af:objectImage source="#{logview.IMG_INFO}" />
@@ -117,9 +117,9 @@
 				<af:outputText value="WARNING"
 					inlineStyle="COLOR: YELLOW;font-weight: bold"
 					rendered="#{evento.nivelWarning}" />
-				<af:outputText value="FINE"
+				<af:outputText value="FATAL"
 					inlineStyle="COLOR: GREEN;font-weight: bold"
-					rendered="#{evento.nivelFine}" />
+					rendered="#{evento.nivelFatal}" />
 				<af:outputText value="INFO"
 					inlineStyle="COLOR: BLACK;font-weight: bold"
 					rendered="#{evento.nivelInfo}" />
