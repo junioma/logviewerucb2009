@@ -80,16 +80,16 @@
 	<af:panelHeader text="Legenda de níveis" inlineStyle="width: 100%">
 			<h:panelGrid columns="5" width="40%">
 				<af:panelGroup>
+					<af:objectImage source="#{logview.IMG_FATAL}" />
+					<af:outputLabel value="FATAL" />
+				</af:panelGroup>
+				<af:panelGroup>
 					<af:objectImage source="#{logview.IMG_ERROR}" />
 					<af:outputLabel value="ERROR" />
 				</af:panelGroup>
 				<af:panelGroup>
 					<af:objectImage source="#{logview.IMG_WARNING}" />
 					<af:outputLabel value="WARNING" />
-				</af:panelGroup>
-				<af:panelGroup>
-					<af:objectImage source="#{logview.IMG_FATAL}" />
-					<af:outputLabel value="FATAL" />
 				</af:panelGroup>
 				<af:panelGroup>
 					<af:objectImage source="#{logview.IMG_INFO}" />
