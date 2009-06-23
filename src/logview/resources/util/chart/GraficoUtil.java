@@ -52,7 +52,7 @@ public class GraficoUtil{
 	private static Color[] objetosCores = new Color[] {
 		Color.BLUE,
 		Color.BLACK,
-		Color.GREEN,
+		Color.GRAY,
 		Color.YELLOW,
 		Color.RED
 	};
