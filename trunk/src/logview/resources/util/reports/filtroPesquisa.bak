@@ -33,7 +33,7 @@
 	<parameter name="cThread" isForPrompting="false" class="java.lang.String"/>
 	<parameter name="cNivelError" isForPrompting="false" class="java.lang.Boolean"/>
 	<parameter name="cNivelWarning" isForPrompting="false" class="java.lang.Boolean"/>
-	<parameter name="cNivelFine" isForPrompting="false" class="java.lang.Boolean"/>
+	<parameter name="cNivelFatal" isForPrompting="false" class="java.lang.Boolean"/>
 	<parameter name="cNivelInfo" isForPrompting="false" class="java.lang.Boolean"/>
 	<parameter name="cNivelDebug" isForPrompting="false" class="java.lang.Boolean"/>
 	<parameter name="SUBREPORT_DIR" isForPrompting="false" class="java.lang.String"/>
@@ -252,13 +252,12 @@
 				</staticText>
 				<staticText>
 					<reportElement
-						x="109"
+						x="131"
 						y="31"
 						width="28"
 						height="13"
 						key="staticText-19">
-							<printWhenExpression><![CDATA[
-$P{cNivelError}]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$P{cNivelError}]]></printWhenExpression>
 						</reportElement>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -268,7 +267,7 @@ $P{cNivelError}]]></printWhenExpression>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="137"
+						x="159"
 						y="31"
 						width="52"
 						height="13"
@@ -283,18 +282,18 @@ $P{cNivelError}]]></printWhenExpression>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="189"
+						x="109"
 						y="31"
 						width="22"
 						height="13"
 						key="staticText-21">
-							<printWhenExpression><![CDATA[new Boolean($P{cNivelFine})]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$P{cNivelFatal}]]></printWhenExpression>
 						</reportElement>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Tahoma" pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Fine]]></text>
+				<text><![CDATA[Fatal]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -303,7 +302,7 @@ $P{cNivelError}]]></printWhenExpression>
 						width="26"
 						height="13"
 						key="staticText-22">
-							<printWhenExpression><![CDATA[new Boolean($P{cNivelInfo})]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$P{cNivelInfo}]]></printWhenExpression>
 						</reportElement>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -318,7 +317,7 @@ $P{cNivelError}]]></printWhenExpression>
 						width="30"
 						height="13"
 						key="staticText-23">
-							<printWhenExpression><![CDATA[new Boolean($P{cNivelDebug})]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$P{cNivelDebug}]]></printWhenExpression>
 						</reportElement>
 					<box></box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
