@@ -522,9 +522,9 @@ public class Parse {
 				{
 					valueOfNivel = Constantes.NIVEL_WARNING.intValue();
 				}
-				else if(tempValue.equals("FINE"))
+				else if(tempValue.equals("FATAL"))
 				{
-					valueOfNivel = Constantes.NIVEL_FINE.intValue();
+					valueOfNivel = Constantes.NIVEL_FATAL.intValue();
 				}
 				else if(tempValue.equals("INFO"))
 				{

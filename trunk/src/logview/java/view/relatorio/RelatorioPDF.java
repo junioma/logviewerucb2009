@@ -64,7 +64,7 @@ public class RelatorioPDF extends LogView{
 			parametros.put("cThread", filtro.getThread());
 			parametros.put("cNivelError", filtro.isFiltroNivelError());
 			parametros.put("cNivelWarning", filtro.isFiltroNivelWarning());
-			parametros.put("cNivelFine", filtro.isFiltroNivelFine());
+			parametros.put("cNivelFatal", filtro.isFiltroNivelFatal());
 			parametros.put("cNivelInfo", filtro.isFiltroNivelInfo());
 			parametros.put("cNivelDebug", filtro.isFiltroNivelDebug());
 			parametros.put("totalEvento", listaEventos.size()+"");

@@ -87,8 +87,8 @@ public class LogView {
 	public String getIMG_WARNING(){
 		return Constantes.IMAGEM_WARNING;
 	}
-	public String getIMG_FINE(){
-		return Constantes.IMAGEM_FINE;
+	public String getIMG_FATAL(){
+		return Constantes.IMAGEM_FATAL;
 	}
 	public String getIMG_INFO(){
 		return Constantes.IMAGEM_INFO;

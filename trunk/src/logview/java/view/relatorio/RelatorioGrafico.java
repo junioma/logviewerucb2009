@@ -59,7 +59,7 @@ public class RelatorioGrafico extends LogView {
 	private List<Object[]> contabilizarOcorrencias(List<Evento> listaEventos) {
 		int qtdDebug = 0;
 		int qtdInfo = 0;
-		int qtdFine = 0;
+		int qtdFatal = 0;
 		int qtdWarning = 0;
 		int qtdError = 0;
 		
@@ -68,8 +68,8 @@ public class RelatorioGrafico extends LogView {
 				qtdDebug++;
 			if(evento.isNivelError())
 				qtdError++;
-			if(evento.isNivelFine())
-				qtdFine++;
+			if(evento.isNivelFatal())
+				qtdFatal++;
 			if(evento.isNivelInfo())
 				qtdInfo++;
 			if(evento.isNivelWarning())
@@ -79,7 +79,7 @@ public class RelatorioGrafico extends LogView {
 		List<Object[]> listaValores = new ArrayList<Object[]>();
 		listaValores.add(new Object[]{"Debug",new Integer(qtdDebug)});
 		listaValores.add(new Object[]{"Info",new Integer(qtdInfo)});
-		listaValores.add(new Object[]{"Fine",new Integer(qtdFine)});
+		listaValores.add(new Object[]{"Fatal",new Integer(qtdFatal)});
 		listaValores.add(new Object[]{"Warning",new Integer(qtdWarning)});
 		listaValores.add(new Object[]{"Error",new Integer(qtdError)});
 		return listaValores;

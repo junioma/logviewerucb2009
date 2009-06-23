@@ -142,8 +142,8 @@ public class Evento {
 	public boolean isNivelInfo(){
 		return (getNivel() == Constantes.NIVEL_INFO.intValue());		
 	}
-	public boolean isNivelFine(){
-		return (getNivel() == Constantes.NIVEL_FINE.intValue());
+	public boolean isNivelFatal(){
+		return (getNivel() == Constantes.NIVEL_FATAL.intValue());
 	}
 	public boolean isNivelWarning(){
 		return (getNivel() == Constantes.NIVEL_WARNING.intValue());		
@@ -157,8 +157,8 @@ public class Evento {
 			return "Debug";
 		if(isNivelInfo())
 			return "Info";
-		if(isNivelFine())
-			return "Fine";
+		if(isNivelFatal())
+			return "Fatal";
 		if(isNivelWarning())
 			return "Warning";
 		if(isNivelError())
@@ -190,8 +190,8 @@ public class Evento {
 		if(isNivelInfo()){
 			return Constantes.IMAGEM_INFO;
 		}
-		if(isNivelFine()){
-			return Constantes.IMAGEM_FINE;
+		if(isNivelFatal()){
+			return Constantes.IMAGEM_FATAL;
 		}
 		if(isNivelWarning()){
 			return Constantes.IMAGEM_WARNING;

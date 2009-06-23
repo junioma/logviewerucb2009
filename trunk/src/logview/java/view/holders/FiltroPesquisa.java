@@ -127,8 +127,8 @@ public class FiltroPesquisa {
 	public boolean isFiltroNivelWarning(){
 		return verificarExisteNivel(Constantes.NIVEL_WARNING);
 	}
-	public boolean isFiltroNivelFine(){
-		return verificarExisteNivel(Constantes.NIVEL_FINE);
+	public boolean isFiltroNivelFatal(){
+		return verificarExisteNivel(Constantes.NIVEL_FATAL);
 	}
 	public boolean isFiltroNivelInfo(){
 		return verificarExisteNivel(Constantes.NIVEL_INFO);
