@@ -1,0 +1,1 @@
+This software is a prototype of final design from the students of Computer Science and Information Systems, which is under development. The software aims to offer ways of reading log files, that are made based on Log4J API settings and display the information in web interface.
